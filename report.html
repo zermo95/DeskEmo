@@ -1,250 +1,23 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Desk Emo</title>
-
-	<!-- Global stylesheets -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-	<link href="assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
-	<link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css">
-	<link href="assets/css/core.css" rel="stylesheet" type="text/css">
-	<link href="assets/css/components.css" rel="stylesheet" type="text/css">
-	<link href="assets/css/colors.css" rel="stylesheet" type="text/css">
-	<!-- /global stylesheets -->
-
-	<!-- Core JS files -->
-	<script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
-	<script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
-	<script type="text/javascript" src="assets/js/core/libraries/bootstrap.min.js"></script>
-	<script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
-	<!-- /core JS files -->
-
 	<!-- Theme JS files -->
-	<script type="text/javascript" src="assets/js/plugins/visualization/d3/d3.min.js"></script>
-	<script type="text/javascript" src="assets/js/plugins/visualization/d3/d3_tooltip.js"></script>
-	<script type="text/javascript" src="assets/js/plugins/forms/styling/switchery.min.js"></script>
-	<script type="text/javascript" src="assets/js/plugins/forms/styling/uniform.min.js"></script>
-	<script type="text/javascript" src="assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
-	<script type="text/javascript" src="assets/js/plugins/ui/moment/moment.min.js"></script>
-	<script type="text/javascript" src="assets/js/plugins/pickers/daterangepicker.js"></script>
-	<script type="text/javascript" src="assets/js/plugins/visualization/echarts/echarts.js"></script>
-
-	<script type="text/javascript" src="assets/js/charts/echarts/lines_areas.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/tables/datatables/datatables.min.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/forms/selects/select2.min.js"></script>
 
 	<script type="text/javascript" src="assets/js/core/app.js"></script>
-	<script type="text/javascript" src="assets/js/pages/dashboard.js"></script>
+	<script type="text/javascript" src="assets/js/pages/datatables_basic.js"></script>
 
 	<script type="text/javascript" src="assets/js/plugins/ui/ripple.min.js"></script>
+
 	<!-- /theme JS files -->
 
 </head>
 
 <body>
 
-	<!-- Main navbar -->
-	<div class="navbar navbar-default header-highlight">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="index.html"><img src="assets/images/logo_light.png" alt=""></a>
 
-			<ul class="nav navbar-nav visible-xs-block">
-				<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
-				<li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
-			</ul>
-		</div>
-
-		<div class="navbar-collapse collapse" id="navbar-mobile">
-			<ul class="nav navbar-nav">
-				<li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
-			</ul>
-
-			<div class="navbar-right">
-				<p class="navbar-text">Buongiorno, Dott. Rossi!</p>
-				<p class="navbar-text"><span class="label bg-success">Online</span></p>
-				
-				<ul class="nav navbar-nav">				
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="icon-bell2"></i>
-							<span class="visible-xs-inline-block position-right">Activity</span>
-							<span class="status-mark border-pink-300"></span>
-						</a>
-
-						<div class="dropdown-menu dropdown-content">
-							<div class="dropdown-content-heading">
-								Activity
-								<ul class="icons-list">
-									<li><a href="#"><i class="icon-menu7"></i></a></li>
-								</ul>
-							</div>
-
-							<ul class="media-list dropdown-content-body width-350">
-								<li class="media">
-									<div class="media-left">
-										<a href="#" class="btn bg-success-400 btn-rounded btn-icon btn-xs"><i class="icon-mention"></i></a>
-									</div>
-
-									<div class="media-body">
-										<a href="#">Taylor Swift</a> mentioned you in a post "Angular JS. Tips and tricks"
-										<div class="media-annotation">4 minutes ago</div>
-									</div>
-								</li>
-
-								<li class="media">
-									<div class="media-left">
-										<a href="#" class="btn bg-pink-400 btn-rounded btn-icon btn-xs"><i class="icon-paperplane"></i></a>
-									</div>
-									
-									<div class="media-body">
-										Special offers have been sent to subscribed users by <a href="#">Donna Gordon</a>
-										<div class="media-annotation">36 minutes ago</div>
-									</div>
-								</li>
-
-								<li class="media">
-									<div class="media-left">
-										<a href="#" class="btn bg-blue btn-rounded btn-icon btn-xs"><i class="icon-plus3"></i></a>
-									</div>
-									
-									<div class="media-body">
-										<a href="#">Chris Arney</a> created a new <span class="text-semibold">Design</span> branch in <span class="text-semibold">Limitless</span> repository
-										<div class="media-annotation">2 hours ago</div>
-									</div>
-								</li>
-
-								<li class="media">
-									<div class="media-left">
-										<a href="#" class="btn bg-purple-300 btn-rounded btn-icon btn-xs"><i class="icon-truck"></i></a>
-									</div>
-									
-									<div class="media-body">
-										Shipping cost to the Netherlands has been reduced, database updated
-										<div class="media-annotation">Feb 8, 11:30</div>
-									</div>
-								</li>
-
-								<li class="media">
-									<div class="media-left">
-										<a href="#" class="btn bg-warning-400 btn-rounded btn-icon btn-xs"><i class="icon-bubble8"></i></a>
-									</div>
-									
-									<div class="media-body">
-										New review received on <a href="#">Server side integration</a> services
-										<div class="media-annotation">Feb 2, 10:20</div>
-									</div>
-								</li>
-
-								<li class="media">
-									<div class="media-left">
-										<a href="#" class="btn bg-teal-400 btn-rounded btn-icon btn-xs"><i class="icon-spinner11"></i></a>
-									</div>
-									
-									<div class="media-body">
-										<strong>January, 2016</strong> - 1320 new users, 3284 orders, $49,390 revenue
-										<div class="media-annotation">Feb 1, 05:46</div>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</li>
-
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="icon-bubble8"></i>
-							<span class="visible-xs-inline-block position-right">Messages</span>
-							<span class="status-mark border-pink-300"></span>
-						</a>
-						
-						<div class="dropdown-menu dropdown-content width-350">
-							<div class="dropdown-content-heading">
-								Messages
-								<ul class="icons-list">
-									<li><a href="#"><i class="icon-compose"></i></a></li>
-								</ul>
-							</div>
-
-							<ul class="media-list dropdown-content-body">
-								<li class="media">
-									<div class="media-left">
-										<img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
-										<span class="badge bg-danger-400 media-badge">5</span>
-									</div>
-
-									<div class="media-body">
-										<a href="#" class="media-heading">
-											<span class="text-semibold">James Alexander</span>
-											<span class="media-annotation pull-right">04:58</span>
-										</a>
-
-										<span class="text-muted">who knows, maybe that would be the best thing for me...</span>
-									</div>
-								</li>
-
-								<li class="media">
-									<div class="media-left">
-										<img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
-										<span class="badge bg-danger-400 media-badge">4</span>
-									</div>
-
-									<div class="media-body">
-										<a href="#" class="media-heading">
-											<span class="text-semibold">Margo Baker</span>
-											<span class="media-annotation pull-right">12:16</span>
-										</a>
-
-										<span class="text-muted">That was something he was unable to do because...</span>
-									</div>
-								</li>
-
-								<li class="media">
-									<div class="media-left"><img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></div>
-									<div class="media-body">
-										<a href="#" class="media-heading">
-											<span class="text-semibold">Jeremy Victorino</span>
-											<span class="media-annotation pull-right">22:48</span>
-										</a>
-
-										<span class="text-muted">But that would be extremely strained and suspicious...</span>
-									</div>
-								</li>
-
-								<li class="media">
-									<div class="media-left"><img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></div>
-									<div class="media-body">
-										<a href="#" class="media-heading">
-											<span class="text-semibold">Beatrix Diaz</span>
-											<span class="media-annotation pull-right">Tue</span>
-										</a>
-
-										<span class="text-muted">What a strenuous career it is that I've chosen...</span>
-									</div>
-								</li>
-
-								<li class="media">
-									<div class="media-left"><img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></div>
-									<div class="media-body">
-										<a href="#" class="media-heading">
-											<span class="text-semibold">Richard Vango</span>
-											<span class="media-annotation pull-right">Mon</span>
-										</a>
-										
-										<span class="text-muted">Other travelling salesmen live a life of luxury...</span>
-									</div>
-								</li>
-							</ul>
-
-							<div class="dropdown-content-footer">
-								<a href="#" data-popup="tooltip" title="All messages"><i class="icon-menu display-block"></i></a>
-							</div>
-						</div>
-					</li>					
-				</ul>
-			</div>
-		</div>
-	</div>
-	<!-- /main navbar -->
 
 
 	<!-- Page container -->
@@ -253,77 +26,164 @@
 		<!-- Page content -->
 		<div class="page-content">
 
-			<!-- Main sidebar -->
-			<div class="sidebar sidebar-main">
-				<div class="sidebar-content">
+			<!-- Page header -->
+			<div class="page-header">
+				<div class="page-header-content">
+					<div class="page-title">
+						<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Elenco Pazienti</span></h4>
+						<a class="heading-elements-toggle"><i class="icon-more"></i></a></div>
+				</div>
 
-					<!-- User menu -->
-					<div class="sidebar-user-material">
-						<div class="category-content">
-							<div class="sidebar-user-material-content">
-								<a href="#"><img src="assets/images/placeholder.jpg" class="img-circle img-responsive" alt=""></a>
-								<h6>Dott. Rossi</h6>
-								<span class="text-size-small">Altamura (BA)</span>
-							</div>
-														
-							<div class="sidebar-user-material-menu">
-								<a href="#user-nav" data-toggle="collapse"><span>Il mio profilo</span> <i class="caret"></i></a>
-							</div>
-						</div>
-						
-						<div class="navigation-wrapper collapse" id="user-nav">
-							<ul class="navigation">
-								<li><a href="#"><i class="icon-user-plus"></i> <span>My profile</span></a></li>
-								<li><a href="#"><i class="icon-coins"></i> <span>My balance</span></a></li>
-								<li><a href="#"><i class="icon-comment-discussion"></i> <span><span class="badge bg-teal-400 pull-right">58</span> Messages</span></a></li>
+				<div class="breadcrumb-line breadcrumb-line-component"><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+					<ul class="breadcrumb">
+						<li><a href="index.html"><i class="icon-home2 position-left"></i> Dashboard</a></li>
+						<li class="active">Pazienti</li>
+					</ul>
+
+					<ul class="breadcrumb-elements">
+						<li><a href="#" class="legitRipple"><i class="icon-comment-discussion position-left"></i> Supporto</a></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown">
+								<i class="icon-gear position-left"></i>
+								Impostazioni
+								<span class="caret"></span>
+							</a>
+
+							<ul class="dropdown-menu dropdown-menu-right">
+								<li><a href="#"><i class="icon-user-lock"></i> Account security</a></li>
+								<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>
+								<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>
 								<li class="divider"></li>
-								<li><a href="#"><i class="icon-cog5"></i> <span>Account settings</span></a></li>
-								<li><a href="#"><i class="icon-switch2"></i> <span>Logout</span></a></li>
+								<li><a href="#"><i class="icon-gear"></i> All settings</a></li>
 							</ul>
-						</div>
-					</div>
-					<!-- /user menu -->
-
-
-					<!-- Main navigation -->
-					<div class="sidebar-category sidebar-category-visible">
-						<div class="category-content no-padding">
-							<ul class="navigation navigation-main navigation-accordion">
-
-								<!-- Main -->
-								<li class="navigation-header"><span>Menu Rapido</span> <i class="icon-menu" title="Main pages"></i></li>
-								<li><a href="index.html"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
-								<li class="active"><a href="report.html"><i class="icon-microscope"></i> <span>Report</span></a></li>
-								<li><a href="pazienti.html"><i class="icon-people"></i> <span>Pazienti</span></a></li>
-								<!-- /main -->
-
-								<!-- Forms -->
-								<li class="navigation-header"><span>Impostazioni</span> <i class="icon-menu" title="Forms"></i></li>
-								<li><a href="email.html"><i class="icon-gear"></i> <span>Email</span></a></li>
-								<!-- /forms -->
-
-							</ul>
-						</div>
-					</div>
-					<!-- /main navigation -->
-
+						</li>
+					</ul>
 				</div>
 			</div>
-			<!-- /main sidebar -->
+			<!-- /page header -->
 
 
-			<!-- Main content -->
-			<div class="content-wrapper">
-				
+			<!-- Content area -->
+			<div class="content">
+
+				<!-- Basic datatable -->
+				<div class="panel panel-flat">
+					<table class="table datatable-basic">
+						<thead>
+							<tr>
+								<th>Nome</th>
+								<th>Cognome</th>
+								<th>Codice Fiscale</th>
+								<th>Data di nascita</th>
+								<th>Priorità</th>
+								<th class="text-center">Azioni</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Marta</td>
+								<td><a href="#">Erica</a></td>
+								<td>MRTITCHEM426G</td>
+								<td>22 Giu 1972</td>
+								<td><span class="label label-success">Bassa</span></td>
+								<td class="text-center">
+									<ul class="icons-list">
+										<li class="dropdown">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+												<i class="icon-menu9"></i>
+											</a>
+
+											<ul class="dropdown-menu dropdown-menu-right">
+												<li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
+												<li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
+												<li><a href="#"><i class="icon-file-word"></i> Export to .doc</a></li>
+											</ul>
+										</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Rosaelena</td>
+								<td>Weiss</td>
+								<td><a href="#">RSLENWE122GDS</a></td>
+								<td>3 ott 1981</td>
+								<td><span class="label label-default">Da valutare</span></td>
+								<td class="text-center">
+									<ul class="icons-list">
+										<li class="dropdown">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+												<i class="icon-menu9"></i>
+											</a>
+
+											<ul class="dropdown-menu dropdown-menu-right">
+												<li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
+												<li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
+												<li><a href="#"><i class="icon-file-word"></i> Export to .doc</a></li>
+											</ul>
+										</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Aurora</td>
+								<td>Ciccone</td>
+								<td>CCNARSHD74GDJ</td>
+								<td>19 Apr 1969</td>
+								<td><span class="label label-danger">Alta</span></td>
+								<td class="text-center">
+									<ul class="icons-list">
+										<li class="dropdown">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+												<i class="icon-menu9"></i>
+											</a>
+
+											<ul class="dropdown-menu dropdown-menu-right">
+												<li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
+												<li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
+												<li><a href="#"><i class="icon-file-word"></i> Export to .doc</a></li>
+											</ul>
+										</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Cecilia</td>
+								<td>Signorini</td>
+								<td><a href="#">SNRCECNDHG37D</a></td>
+								<td>15 Mar 1960</td>
+								<td><span class="label label-info">Normale</span></td>
+								<td class="text-center">
+									<ul class="icons-list">
+										<li class="dropdown">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+												<i class="icon-menu9"></i>
+											</a>
+
+											<ul class="dropdown-menu dropdown-menu-right">
+												<li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
+												<li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
+												<li><a href="#"><i class="icon-file-word"></i> Export to .doc</a></li>
+											</ul>
+										</li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- /basic datatable -->
+
+				<!-- Footer -->
+				<div class="footer text-muted">
+					© 2017. <a href="#">Desk Emo App</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">AT Software</a>
+				</div>
+				<!-- /footer -->
 			</div>
-			
-			<!-- /main content -->
-
+			<!-- /content area -->
 		</div>
 		<!-- /page content -->
-
 	</div>
 	<!-- /page container -->
-
 </body>
+
 </html>
