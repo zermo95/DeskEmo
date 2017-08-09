@@ -294,15 +294,15 @@
 
                 <!-- Main -->
                 <li class="navigation-header"><span>Menu Rapido</span> <i class="icon-menu" title="Main pages"></i></li>
-                <li ><a href="index.html"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
-                <li id="reportLink"><a href="#"><i class="icon-microscope"></i> <span>Report</span></a></li>
+                <li id="dashboardLink"><a><i class="icon-home4"></i> <span>Dashboard</span></a></li>
+                <li id="reportLink"><a><i class="icon-microscope"></i> <span>Report</span></a></li>
 
-                <li><a href="pazienti.html"><i class="icon-people"></i> <span>Pazienti</span></a></li>
+                <li id="pazientiLink"><a><i class="icon-people"></i> <span>Pazienti</span></a></li>
                 <!-- /main -->
 
                 <!-- Forms -->
                 <li class="navigation-header"><span>Impostazioni</span> <i class="icon-menu" title="Forms"></i></li>
-                <li><a href="email.html"><i class="icon-gear"></i> <span>Email</span></a></li>
+                <li><a><i class="icon-gear"></i> <span>Email</span></a></li>
 
                 <!-- /forms -->
 
@@ -333,9 +333,21 @@
   <script type="text/javascript">
     $("#reportLink").click(function() {
       $(".js-content").load("report.html");
-      $("#reportLink").addClass('active');
+      //$("#reportLink").addClass('active');
+    });
+
+    $("#dashboardLink").click(function() {
+      $(".js-content").load("dashboard.html");
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".js-content").load("dashboard.html");
+      //$('#dashboardLink').addClass('active');
     });
   </script>
 
 </body>
+
 </html>
