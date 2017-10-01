@@ -1,10 +1,10 @@
 {
   "name": "deskemo",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "DeskEmo - app valutazione emoglobina",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron ."
   },
   "author": "AT Software",
   "license": "ISC",
@@ -17,5 +17,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.4.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "electron": "^1.7.8"
+  }
 }
