@@ -148,7 +148,7 @@ a.badge,
  *
  * ---------------------------------------------------------------------------- */
 .sidebar {
-  background-color: #f44236;
+  background-color: #263238;
   color: #fff;
   position: relative;
   width: 100%;
@@ -440,7 +440,7 @@ a.badge,
 .navigation > li.active > a,
 .navigation > li.active > a:hover,
 .navigation > li.active > a:focus {
-  background-color: #a0231a;
+  background-color: #304047;
   color: #fff;
 }
 .navigation > li.active > a > [class*=text-] {
@@ -507,7 +507,7 @@ a.badge,
 }
 .navigation .navigation-header,
 .navigation .navigation-header a {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.5);
   font-weight: 400;
 }
 .navigation .navigation-header a:hover,
@@ -791,7 +791,7 @@ a.badge,
     background-color: transparent;
   }
   .sidebar-separate .sidebar-category {
-    background-color: #f44236;
+    background-color: #263238;
     border-radius: 3px;
     margin-bottom: 20px;
   }
@@ -916,7 +916,7 @@ a.badge,
     top: 44px;
     width: 260px;
     display: none;
-    background-color: #f44236;
+    background-color: #263238;
     border-radius: 0 0 3px 0;
     -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -1048,7 +1048,7 @@ a.badge,
   background-color: rgba(0, 0, 0, 0.1);
 }
 .sidebar:not(.sidebar-default) .media .media-badge {
-  border-color: #f44236;
+  border-color: #263238;
 }
 .sidebar:not(.sidebar-default) .media-list-bordered > li {
   border-color: rgba(255, 255, 255, 0.1);
@@ -12322,7 +12322,7 @@ pre[class*="language-"] {
 .style .token.string,
 .token.variable {
   color: #a67f59;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.5);
 }
 .token.atrule,
 .token.attr-value,
@@ -14585,7 +14585,7 @@ a.plupload_disabled:focus {
 .file-uploading:before {
   content: "";
   display: inline-block;
-  background-color: #f44236;
+  background-color: #263238;
   width: 32px;
   height: 32px;
   position: absolute;
@@ -14593,8 +14593,8 @@ a.plupload_disabled:focus {
   left: 50%;
   margin: -34.5px 0 0 -16px;
   border-radius: 3px;
-  -webkit-box-shadow: 0 1px 5px rgba(255, 255, 255, 0.75);
-  box-shadow: 0 1px 5px rgba(255, 255, 255, 0.75);
+  -webkit-box-shadow: 0 1px 5px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 1px 5px rgba(255, 255, 255, 0.5);
 }
 .file-thumb-loading:after,
 .file-uploading:after {
@@ -18072,7 +18072,7 @@ thead .htCollapseButton:after {
   border: 1px solid #999;
   padding: 20px 0;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(255, 255, 255, 0.5);
 }
 .DTS .dataTables_scrollHead,
 .DTS .dataTables_scrollFoot {

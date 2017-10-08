@@ -387,7 +387,7 @@ a.bg-danger:focus {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 .page-header-inverse .page-title small {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.5);
 }
 .page-header-inverse > .breadcrumb > li > a,
 .page-header-inverse .page-header-content .breadcrumb > li > a,
@@ -405,7 +405,7 @@ a.bg-danger:focus {
 }
 .page-header-inverse > .breadcrumb > .active,
 .page-header-inverse .page-header-content .breadcrumb > .active {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.5);
 }
 .page-header-inverse .form-control-feedback,
 .page-header-inverse .input-group-addon {
@@ -2913,7 +2913,7 @@ select[multiple].input-group-xs > .input-group-btn > .btn {
 .nav-tabs[class*=bg-] > .disabled > a,
 .nav-tabs[class*=bg-] > .disabled > a:hover,
 .nav-tabs[class*=bg-] > .disabled > a:focus {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.5);
 }
 @media (min-width: 769px) {
   .nav-tabs[class*=bg-] {
@@ -3420,7 +3420,7 @@ select[multiple].input-group-xs > .input-group-btn > .btn {
   }
   .tab-content-bordered > .nav-tabs[class*=bg-] + .tab-content[class*=bg-] {
     border-top-width: 1px;
-    border-top-color: rgba(255, 255, 255, 0.75);
+    border-top-color: rgba(255, 255, 255, 0.5);
   }
 }
 @media (min-width: 769px) {
@@ -3575,7 +3575,7 @@ select[multiple].input-group-xs > .input-group-btn > .btn {
   }
 }
 .header-highlight .navbar-header:not([class*=bg-]) {
-  background-color: #f44236;
+  background-color: #263238;
 }
 .header-highlight .navbar-header > .navbar-nav > li > a {
   color: rgba(255, 255, 255, 0.9);
@@ -6546,7 +6546,7 @@ a.list-group-item-danger:focus {
 .panel[class*=bg-] .panel-body + .table,
 .panel[class*=bg-] .panel-body + .table-responsive,
 .panel[class*=bg-] .panel-body.has-top-border {
-  border-top-color: rgba(255, 255, 255, 0.75);
+  border-top-color: rgba(255, 255, 255, 0.5);
 }
 .panel-body-accent {
   background-color: #fcfcfc;
