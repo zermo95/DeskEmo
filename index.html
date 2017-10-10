@@ -24,8 +24,9 @@
     <script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
     <!-- /core JS files -->
 
-    <link rel="import" href="./dashboard.html" id="dashboard-import">
-    <link rel="import" href="./tabelle.html" id="tabelle-import">
+    <link rel="import" href="./report.html" id="report-import">
+    <link rel="import" href="./pazienti.html" id="pazienti-import">
+    <link rel="import" href="./email.html" id="email-import">
 
 
 </head>
@@ -34,9 +35,9 @@
 
     <!-- Main navbar -->
     <div class="navbar navbar-default header-highlight">
-        <div class="navbar-header">
+        <div class="navbar-header bg-danger-600">
             <a class="navbar-brand" href="index.html">
-                <img src="assets/images/logo_light.png" alt="">
+                <img src="assets/images/logo.png" alt="">
             </a>
 
             <ul class="nav navbar-nav visible-xs-block">
@@ -388,7 +389,7 @@
         <div class="page-content">
 
             <!-- Main sidebar -->
-            <div class="sidebar sidebar-main">
+            <div class="sidebar sidebar-main bg-danger-600">
                 <div class="sidebar-content">
 
                     <!-- User menu -->
@@ -404,7 +405,7 @@
 
                             <div class="sidebar-user-material-menu">
                                 <a href="#user-nav" data-toggle="collapse">
-                                    <span>My account</span>
+                                    <span>Account</span>
                                     <i class="caret"></i>
                                 </a>
                             </div>
@@ -414,28 +415,8 @@
                             <ul class="navigation">
                                 <li>
                                     <a href="#">
-                                        <i class="icon-user-plus"></i>
-                                        <span>My profile</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icon-coins"></i>
-                                        <span>My balance</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icon-comment-discussion"></i>
-                                        <span>
-                                            <span class="badge bg-teal-400 pull-right">58</span> Messages</span>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icon-cog5"></i>
-                                        <span>Account settings</span>
+                                        <i class="icon-user"></i>
+                                        <span>Il mio profilo</span>
                                     </a>
                                 </li>
                                 <li>
@@ -457,19 +438,30 @@
 
                                 <!-- Main -->
                                 <li class="navigation-header">
-                                    <span>Main</span>
                                     <i class="icon-menu" title="Main pages"></i>
+                                    <span><b>Menù Rapido</b></span>
                                 </li>
                                 <li>
-                                    <a onclick="caricaSezione('dashboard')">
-                                        <i class="icon-home4"></i>
-                                        <span>Dashboard</span>
+                                    <a onclick="caricaSezione('pazienti')">
+                                        <i class="icon-people"></i>
+                                        <span>Pazienti</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a onclick="caricaSezione('tabelle')">
-                                        <i class="icon-home4"></i>
-                                        <span>Tabelle</span>
+                                    <a onclick="caricaSezione('report')">
+                                        <i class="icon-folder-open2"></i>
+                                        <span>Report</span>
+                                    </a>
+                                </li>
+
+                                <li class="navigation-header">
+                                    <i class="icon-menu" title="Main pages"></i>
+                                    <span><b>Impostazioni</b></span>
+                                </li>
+                                <li>
+                                    <a onclick="caricaSezione('email')">
+                                        <i class="icon-cog"></i>
+                                        <span>Email</span>
                                     </a>
                                 </li>
                                 <!-- /page kits -->
