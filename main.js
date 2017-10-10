@@ -8,45 +8,43 @@ const url = require('url')
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
+//let firstTimeWindows;
 
 function createWindow() {
     // Create the browser window.
     win = new BrowserWindow({
-        webPreferences: {
+        /*webPreferences: {
             nodeIntegration: false
-        },
+        },*/
         width: 1200,
         height: 700
     })
 
-    //Check if is the first time
-    fs = require('fs');
-    fs.stat('files/user.txt', function(err, stat) {
-        if(err == null) {
-
-     // file exists and load the index.html of the app.
+    // file exists and load the index.html of the app.
     win.loadURL(url.format({
         pathname: path.join(__dirname, 'index.html'),
         protocol: 'file:',
         slashes: true
     }))
-        } else if(err.code == 'ENOENT') {
+
+    //Check if is the first time
+    fs = require('fs');
+    fs.stat('files/user.txt', function (err, stat) {
+        if (err == null) {
+
+        } else if (err.code == 'ENOENT') {
             // file does not exist
-             // and load the startup form
-    win.loadURL(url.format({
-        pathname: path.join(__dirname, 'startup.html'),
-        protocol: 'file:',
-        slashes: true
-    }))
+            // and load the startup form
+            firstTimeWindows();
+            /*win.loadURL(url.format({
+                pathname: path.join(__dirname, 'startup.html'),
+                protocol: 'file:',
+                slashes: true
+            }))*/
         } else {
             console.log('Some other error: ', err.code);
         }
     });
-  
-
-
-
- 
 
     // Open the DevTools.
     //win.webContents.openDevTools()
@@ -59,6 +57,36 @@ function createWindow() {
         win = null
     })
 }
+
+function firstTimeWindows() {
+
+    let firstTimeWindows = new BrowserWindow({
+        parent: win, // indica che win è la finestra genitore 
+        modal: true, // disabilita momentanemente la finestra genitore finche' questa e' in vita
+        width: 600,
+        height: 600,
+        /* qua andremo a mettere false nel momento in cui la pubblicheremo 
+        per il momento lasciamo true così ci è più facile allargare la finestra 
+        e usare l'ispezione web */        
+        resizable: true
+    })
+
+    firstTimeWindows.loadURL(url.format({
+        pathname: path.join(__dirname, 'startup-new.html'),
+        protocol: 'file:',
+        slashes: true
+    }))
+
+    firstTimeWindows.on('ready-to-show', () => {
+        firstTimeWindows.show()
+    })
+
+    firstTimeWindows.on('closed', () => {
+        firstTimeWindows = null
+    })
+
+}
+
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

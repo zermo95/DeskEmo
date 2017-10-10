@@ -16,12 +16,26 @@
     <link href="assets/css/colors.css" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
 
+    <!-- Insert this line above script imports  -->
+    <script>
+        if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
+    </script>
+
+    <!-- normal script imports etc  -->
     <!-- Core JS files -->
     <script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
     <script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
     <script type="text/javascript" src="assets/js/core/libraries/bootstrap.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
     <!-- /core JS files -->
+
+    <!-- Insert this line after script imports -->
+    <script>
+        if (window.module) module = window.module;
+    </script>
 
     <!-- Theme JS files -->
     <script type="text/javascript" src="assets/js/plugins/forms/wizards/steps.min.js"></script>
@@ -100,7 +114,7 @@
                     </fieldset>
 
                     <div class="text-right">
-                        <button type="submit" class="btn btn-primary legitRipple">Submit
+                        <button id="closeButton" class="btn btn-primary legitRipple">Submit
                             <i class="icon-arrow-right14 position-right"></i>
                         </button>
                     </div>
@@ -129,11 +143,10 @@
     </div>
     <!-- /page container -->
 
-
-
-
-
-
+    
 </body>
+<script>
+    require('./renderer-process/firstTimeWindows.js')
+</script>
 
 </html>

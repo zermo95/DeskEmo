@@ -16,6 +16,16 @@
     <link href="assets/css/colors.css" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
 
+    <!-------- evita conflitti con jQuery --------------------------------------------------------------->
+    <!-- Insert this line above script imports  -->
+    <script>
+        if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
+    </script>
+
+    <!-- normal script imports etc  -->
     <!-- Core JS files -->
     <script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
     <script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
@@ -23,10 +33,18 @@
     <script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
     <!-- /core JS files -->
 
+    <!-- Insert this line after script imports -->
+    <script>
+        if (window.module) module = window.module;
+    </script>
+    <!-------- / evita conflitti con jQuery -------------------------------------------------------------->
+    
+
+    <!-- Carica contenuto varie sezioni  -->
     <link rel="import" href="./report.html" id="report-import">
     <link rel="import" href="./pazienti.html" id="pazienti-import">
     <link rel="import" href="./email.html" id="email-import">
-
+    <!-- / Carica contenuto varie sezioni  -->
 
 </head>
 
