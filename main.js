@@ -19,12 +19,34 @@ function createWindow() {
         height: 700
     })
 
-    // and load the index.html of the app.
+    //Check if is the first time
+    fs = require('fs');
+    fs.stat('files/user.txt', function(err, stat) {
+        if(err == null) {
+
+     // file exists and load the index.html of the app.
     win.loadURL(url.format({
         pathname: path.join(__dirname, 'index.html'),
         protocol: 'file:',
         slashes: true
     }))
+        } else if(err.code == 'ENOENT') {
+            // file does not exist
+             // and load the startup form
+    win.loadURL(url.format({
+        pathname: path.join(__dirname, 'startup.html'),
+        protocol: 'file:',
+        slashes: true
+    }))
+        } else {
+            console.log('Some other error: ', err.code);
+        }
+    });
+  
+
+
+
+ 
 
     // Open the DevTools.
     //win.webContents.openDevTools()
