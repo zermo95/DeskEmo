@@ -20,27 +20,28 @@ function createWindow() {
         height: 700
     })
 
-    // file exists and load the index.html of the app.
+
+
+    //Check if is the first time
+    fs = require('fs');
+    fs.stat('info.json', function (err, stat) {
+        if (err == null) {
+                // file exists and load the index.html of the app.
     win.loadURL(url.format({
         pathname: path.join(__dirname, 'index.html'),
         protocol: 'file:',
         slashes: true
     }))
 
-    //Check if is the first time
-    fs = require('fs');
-    fs.stat('files/user.txt', function (err, stat) {
-        if (err == null) {
-
         } else if (err.code == 'ENOENT') {
             // file does not exist
             // and load the startup form
-            firstTimeWindows();
-            /*win.loadURL(url.format({
-                pathname: path.join(__dirname, 'startup.html'),
+           // firstTimeWindows();
+            win.loadURL(url.format({
+                pathname: path.join(__dirname, 'start.html'),
                 protocol: 'file:',
                 slashes: true
-            }))*/
+            }))
         } else {
             console.log('Some other error: ', err.code);
         }

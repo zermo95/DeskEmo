@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Deskemo Alpha 1.0.0 by AT Software</title>
+
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/core.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/components.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/colors.css" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
+
+    <!-------- evita conflitti con jQuery --------------------------------------------------------------->
+    <!-- Insert this line above script imports  -->
+    <script>
+        if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
+    </script>
+
+    <!-- normal script imports etc  -->
+    <!-- Core JS files -->
+    <script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
+    <script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/core/libraries/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
+    <!-- /core JS files -->
+
+    <!-- Insert this line after script imports -->
+    <script>
+        if (window.module) module = window.module;
+    </script>
+    <!-------- / evita conflitti con jQuery -------------------------------------------------------------->
+    
+
+    <!-- Carica contenuto varie sezioni  -->
+    <link rel="import" href="./email.html" id="email-import">
+    <!-- / Carica contenuto varie sezioni  -->
+
+    <script type="text/javascript">
+$(document).ready(function () {
+    
+        $('#modal_info').modal('show');
+    });
+    </script>
+
+</head>
+
+<body class="navbar-top" onload="caricaSezione('email')">
+
+    <!-- Main navbar -->
+    <div class="navbar navbar-default navbar-fixed-top header-highlight">
+        <div class="navbar-header bg-danger-600">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/images/logo.png" alt="">
+            </a>
+
+            <ul class="nav navbar-nav visible-xs-block">
+                <li>
+                    <a data-toggle="collapse" data-target="#navbar-mobile">
+                        <i class="icon-tree5"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="sidebar-mobile-main-toggle">
+                        <i class="icon-paragraph-justify3"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        
+    </div>
+    <!-- /main navbar -->
+
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main sidebar -->
+            <div class="sidebar sidebar-main sidebar-fixed bg-danger-600">
+                <div class="sidebar-content">
+
+                    <!-- User menu -->
+                    <div class="sidebar-user-material">
+                        <div class="category-content">
+                            <div class="sidebar-user-material-content">
+                                <a href="#">
+                                    <img src="assets/images/placeholder.jpg" class="img-circle img-responsive" alt="">
+                                </a>
+                                <h6>Utente</h6>
+                            </div>
+
+                            <div class="sidebar-user-material-menu">
+                                <a href="#user-nav" data-toggle="collapse">
+                                    <span>Account</span>
+                                    <i class="caret"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="navigation-wrapper collapse" id="user-nav">
+                            <ul class="navigation">
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-user"></i>
+                                        <span>Il mio profilo</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-switch2"></i>
+                                        <span>Logout</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /user menu -->
+
+
+                    <!-- Main navigation -->
+                    <div class="sidebar-category sidebar-category-visible">
+                        <div class="category-content no-padding">
+                            <ul class="navigation navigation-main navigation-accordion">
+
+                                <!-- Main -->
+                                <li class="navigation-header">
+                                    <i class="icon-menu" title="Main pages"></i>
+                                    <span>
+                                        <b>Menù Rapido</b>
+                                    </span>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="icon-people"></i>
+                                        <span>Pazienti</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="icon-folder-open2"></i>
+                                        <span>Report</span>
+                                    </a>
+                                </li>
+
+                                <li class="navigation-header">
+                                    <i class="icon-menu" title="Main pages"></i>
+                                    <span>
+                                        <b>Impostazioni</b>
+                                    </span>
+                                </li>
+                                <li>
+                                    <a onclick="caricaSezione('email')">
+                                        <i class="icon-cog"></i>
+                                        <span>Email</span>
+                                    </a>
+                                </li>
+                                <!-- /page kits -->
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /main navigation -->
+
+                </div>
+            </div>
+            <!-- /main sidebar -->
+
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <div id="contenuto">
+                </div>
+
+                <script>
+                    function caricaSezione(sezione) {
+
+                        var link = document.querySelector('#' + sezione + '-import');
+
+                        var template = link.import.querySelector('#' + sezione + '-template');
+
+                        var clone = document.importNode(template.content, true);
+
+                        console.log(link);
+
+                        document.querySelector('#contenuto').innerHTML = '';
+                        document.querySelector('#contenuto').appendChild(clone);
+                    }
+                </script>
+
+
+                <div class="content">
+                    <!-- Footer -->
+                    <div class="footer text-muted">
+                        &copy; 2017.
+                        <a href="#">Desk Emo Alpha 1.0.</a> by
+                        <a href="http://themeforest.net/user/Kopyov" target="_blank">AT Software</a>
+                    </div>
+                    <!-- /footer -->
+                </div>
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+
+
+
+
+    <div id="modal_info" class="modal fade in" style="display: block; padding-right: 15px;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h5 class="modal-title">Configurazione iniziale</h5>
+                </div>
+
+                <div class="modal-body">
+                    <p>Benvenuto in DeskEmo, prima di poter iniziare ad utilizzare il software è necessario fornire alcune informazioni quali nome, cognome, indirizzo email e password. Terminato l'inserimento fai click su "Salva" per memorizzare le informazioni ed utilizzare a pieno le funzionalità offerte da DeskEmo!</p>
+               </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary legitRipple" data-dismiss="modal">Ho capito</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+    <!-- /page container -->
+
+
+
+</body>
+
+
+
+        <!-- Theme JS files -->
+        <script type="text/javascript" src="assets/js/plugins/visualization/d3/d3.min.js"></script>
+        <script type="text/javascript" src="assets/js/plugins/visualization/d3/d3_tooltip.js"></script>
+        <script type="text/javascript" src="assets/js/plugins/forms/styling/switchery.min.js"></script>
+        <script type="text/javascript" src="assets/js/plugins/forms/styling/uniform.min.js"></script>
+        <script type="text/javascript" src="assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
+        <script type="text/javascript" src="assets/js/plugins/ui/moment/moment.min.js"></script>
+        <script type="text/javascript" src="assets/js/plugins/pickers/daterangepicker.js"></script>
+    
+        <script type="text/javascript" src="assets/js/plugins/ui/ripple.min.js"></script>
+        <!-- /theme JS files -->
+        <script type="text/javascript" src="assets/js/core/app.js"></script>
+    
+        <!-- Theme JS files -->
+        <script type="text/javascript" src="assets/js/plugins/tables/datatables/datatables.min.js"></script>
+        <script type="text/javascript" src="assets/js/plugins/forms/selects/select2.min.js"></script>
+    
+        <script type="text/javascript" src="assets/js/plugins/ui/ripple.min.js"></script>
+        <!-- /theme JS files -->
+</html>
