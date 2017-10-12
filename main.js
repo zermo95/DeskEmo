@@ -26,17 +26,17 @@ function createWindow() {
     fs = require('fs');
     fs.stat('info.json', function (err, stat) {
         if (err == null) {
-                // file exists and load the index.html of the app.
-    win.loadURL(url.format({
-        pathname: path.join(__dirname, 'index.html'),
-        protocol: 'file:',
-        slashes: true
-    }))
+            // file exists and load the index.html of the app.
+            win.loadURL(url.format({
+                pathname: path.join(__dirname, 'index.html'),
+                protocol: 'file:',
+                slashes: true
+            }))
 
         } else if (err.code == 'ENOENT') {
             // file does not exist
             // and load the startup form
-           // firstTimeWindows();
+            // firstTimeWindows();
             win.loadURL(url.format({
                 pathname: path.join(__dirname, 'start.html'),
                 protocol: 'file:',
@@ -68,7 +68,7 @@ function firstTimeWindows() {
         height: 600,
         /* qua andremo a mettere false nel momento in cui la pubblicheremo 
         per il momento lasciamo true così ci è più facile allargare la finestra 
-        e usare l'ispezione web */        
+        e usare l'ispezione web */
         resizable: true
     })
 
