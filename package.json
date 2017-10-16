@@ -9,6 +9,7 @@
   "author": "AT Software",
   "license": "ISC",
   "dependencies": {
-    "electron": "^1.7.8"
+    "electron": "^1.7.8",
+    "imap": "^0.8.19"
   }
 }
