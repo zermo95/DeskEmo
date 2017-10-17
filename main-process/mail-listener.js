@@ -18,25 +18,53 @@ function openInbox(cb) {
 
 imap.once('ready', function () {
     openInbox(function (err, box) {
+        var dir = 'email';
+        //Crea la cartella email se non esiste
+        if (!fs.existsSync(dir)){
+            fs.mkdirSync(dir);
+        }
         if (err) throw err;
-        imap.search(['UNSEEN', ['SINCE', 'May 20, 2010']], function (err, results) {
+        imap.search(['ALL'], function (err, results) {
             if (err) throw err;
             var f = imap.fetch(results, {
-                bodies: ''
+                bodies: '',
+                struct: true
             });
             f.on('message', function (msg, seqno) {
                 console.log('Message #%d', seqno);
-                var prefix = '(#' + seqno + ') ';
+
                 msg.on('body', function (stream, info) {
-                    console.log(prefix + 'Body');
-                    stream.pipe(fs.createWriteStream('msg-' + seqno + '-body.txt'));
-                });
-                msg.once('attributes', function (attrs) {
-                    console.log(prefix + 'Attributes: %s', inspect(attrs, false, 8));
-                });
+                    console.log( 'Body');
+                    var buffer = '';
+                    stream.on('data', function(chunk) {
+                        buffer += chunk.toString('utf8');
+                      });
+                      stream.on('end', function() {
+                        var messageID=buffer.match("Message-ID: <(.*)>");
+                        console.log('STRING BUFFER:' + messageID[1]);
+                        console.log('END BUFFER');
+                        var emailDir = 'email/' + messageID[1];
+                        if (!fs.existsSync(emailDir)){
+                            fs.mkdirSync(emailDir);
+                            fs.writeFile(emailDir + '/msg-' + seqno + '-body.txt', buffer, function(err) {
+                                if(err) {
+                                    return console.log(err);
+                                }
+                            
+                                console.log("The file was saved!");
+                            }); 
+                        }
+                      });
+                             
+                
+            });
+
                 msg.once('end', function () {
-                    console.log(prefix + 'Finished');
+                    console.log('Finished');
                 });
+            
+                
+
             });
             f.once('error', function (err) {
                 console.log('Fetch error: ' + err);
