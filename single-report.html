@@ -1,0 +1,198 @@
+<template id="single-report-template">
+    <!-- Page header -->
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4>
+                    <i class="icon-arrow-left52 position-left"></i>
+                    <span class="text-semibold">Report</span> - ##</h4>
+            </div>
+
+            <!--
+            <div class="heading-elements">
+                <div class="heading-btn-group">
+                    <a href="#" class="btn btn-link btn-float text-size-small has-text">
+                        <i class="icon-bars-alt text-primary"></i>
+                        <span>Statistics</span>
+                    </a>
+                    <a href="#" class="btn btn-link btn-float text-size-small has-text">
+                        <i class="icon-calculator text-primary"></i>
+                        <span>Invoices</span>
+                    </a>
+                    <a href="#" class="btn btn-link btn-float text-size-small has-text">
+                        <i class="icon-calendar5 text-primary"></i>
+                        <span>Schedule</span>
+                    </a>
+                </div>
+            </div>
+            -->
+        </div>
+
+        <div class="breadcrumb-line breadcrumb-line-component">
+            <ul class="breadcrumb">
+                <li>
+                    <a href="index.html">
+                        <i class="icon-home2 position-left"></i> Home</a>
+                </li>
+                <li>
+                    <a href="datatable_basic.html">Report</a>
+                </li>
+                <li class="active">##</li>
+            </ul>
+
+            <ul class="breadcrumb-elements">
+                <li>
+                    <a href="#">
+                        <i class="icon-comment-discussion position-left"></i> Support</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-gear position-left"></i>
+                        Settings
+                        <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li>
+                            <a href="#">
+                                <i class="icon-user-lock"></i> Account security</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="icon-statistics"></i> Analytics</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="icon-accessibility"></i> Accessibility</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <i class="icon-gear"></i> All settings</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /page header -->
+
+    <!-- Content area -->
+    <div class="content">
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h6 class="panel-title text-semibold">Foto congiuntiva Giuseppe Bianchi</h6>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li>
+                                    <a data-action="collapse"></a>
+                                </li>
+                                <li>
+                                    <a data-action="reload"></a>
+                                </li>
+                                <li>
+                                    <a data-action="close"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+                        <!--<p>Paziente: Giuseppe Bianchi</p>-->
+
+                        <div class="thumbnail">
+                            <a href="assets/images/demo/congiuntiva1.png" data-popup="lightbox">
+                                <img src="assets/images/demo/congiuntiva1.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <!-- Bar chart -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h6 class="panel-title text-semibold">Grafico</h6>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li>
+                                    <a data-action="collapse"></a>
+                                </li>
+                                <li>
+                                    <a data-action="reload"></a>
+                                </li>
+                                <li>
+                                    <a data-action="close"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="chart-container">
+                            <div class="chart" id="c3-bar-chart"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /bar chart -->
+            </div>
+        </div>
+
+        <!-- Form horizontal -->
+        <div class="panel panel-flat">
+            <div class="panel-heading">
+                <h5 class="panel-title">Basic form inputs</h5>
+            </div>
+
+            <div class="panel-body">
+                <form class="form-horizontal" action="#">
+                    <fieldset class="content-group">
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">Textarea</label>
+                            <div class="col-lg-10">
+                                <textarea rows="5" cols="5" class="form-control" placeholder="Default textarea"></textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary">Submit
+                            <i class="icon-arrow-right14 position-right"></i>
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+
+        <script>
+            $(document).ready(function () {
+                // File script necessari per l'anteprima della congiuntiva
+                $.getScript('assets/js/plugins/forms/styling/switchery.min.js');
+                $.getScript('assets/js/plugins/forms/styling/uniform.min.js');
+                $.getScript('assets/js/plugins/media/fancybox.min.js');
+                $.getScript('assets/js/pages/components_thumbnails.js');
+
+
+                // File script per form di inserimento
+                $.getScript('assets/js/pages/form_inputs.js');
+
+                // File script necessari per il grafico
+                $.getScript('assets/js/plugins/visualization/d3/d3.min.js');
+                $.getScript('assets/js/plugins/visualization/c3/c3.min.js');
+                $.getScript('assets/js/charts/c3/c3_bars_pies.js');
+
+                // File script necessario da ricaricare per tutte le pagine
+                $.getScript('assets/js/core/app.js');
+                $.getScript('assets/js/plugins/ui/ripple.min.js');
+
+
+            })
+        </script>
+
+</template>

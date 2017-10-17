@@ -44,6 +44,7 @@
     <link rel="import" href="./report.html" id="report-import">
     <link rel="import" href="./pazienti.html" id="pazienti-import">
     <link rel="import" href="./email.html" id="email-import">
+    <link rel="import" href="./single-report.html" id="single-report-import">
     <!-- / Carica contenuto varie sezioni  -->
 
 </head>
@@ -180,7 +181,7 @@
             </ul>
             -->
             <div class="navbar-right">
-                <p class="navbar-text">Morning, Victoria!</p>
+                <p class="navbar-text">Buongiorno, Dr. Rossi!</p>
                 <p class="navbar-text">
                     <span class="label bg-success">Online</span>
                 </p>
@@ -415,10 +416,10 @@
                         <div class="category-content">
                             <div class="sidebar-user-material-content">
                                 <a href="#">
-                                    <img src="assets/images/placeholder.jpg" class="img-circle img-responsive" alt="">
+                                    <img src="assets/images/doctor-placeholder-male.jpg" class="img-circle img-responsive" alt="">
                                 </a>
-                                <h6>Victoria Baker</h6>
-                                <span class="text-size-small">Santa Ana, CA</span>
+                                <h6>Dr. Mario Rossi</h6>
+                                <span class="text-size-small">Altamura, BA</span>
                             </div>
 
                             <div class="sidebar-user-material-menu">
@@ -538,26 +539,12 @@
 
     </div>
     <!-- /page container -->
-    <!-- Theme JS files -->
-    <script type="text/javascript" src="assets/js/plugins/visualization/d3/d3.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/visualization/d3/d3_tooltip.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/forms/styling/switchery.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/forms/styling/uniform.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/ui/moment/moment.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/pickers/daterangepicker.js"></script>
 
-    <script type="text/javascript" src="assets/js/plugins/ui/ripple.min.js"></script>
-    <!-- /theme JS files -->
-    <script type="text/javascript" src="assets/js/core/app.js"></script>
-
-    <!-- Theme JS files -->
-    <script type="text/javascript" src="assets/js/plugins/tables/datatables/datatables.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/forms/selects/select2.min.js"></script>
-
-    <script type="text/javascript" src="assets/js/plugins/ui/ripple.min.js"></script>
-    <!-- /theme JS files -->
-
+    <script>
+        $(document).ready(function () {
+            caricaSezione('single-report')
+        });
+    </script>
 
 </body>
 

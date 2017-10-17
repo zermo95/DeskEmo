@@ -10,7 +10,7 @@
  * ---------------------------------------------------------------------------- */
 
 $(function () {
-    
+
 
     // Pie chart
     // ------------------------------
@@ -18,7 +18,9 @@ $(function () {
     // Generate chart
     var pie_chart = c3.generate({
         bindto: '#c3-pie-chart',
-        size: { width: 350 },
+        size: {
+            width: 350
+        },
         color: {
             pattern: ['#3F51B5', '#FF9800', '#4CAF50', '#00BCD4', '#F44336']
         },
@@ -27,7 +29,7 @@ $(function () {
                 ['data1', 30],
                 ['data2', 120],
             ],
-            type : 'pie'
+            type: 'pie'
         }
     });
 
@@ -58,7 +60,9 @@ $(function () {
     // Generate chart
     var donut_chart = c3.generate({
         bindto: '#c3-donut-chart',
-        size: { width: 350 },
+        size: {
+            width: 350
+        },
         color: {
             pattern: ['#3F51B5', '#FF9800', '#4CAF50', '#00BCD4', '#F44336']
         },
@@ -67,7 +71,7 @@ $(function () {
                 ['data1', 30],
                 ['data2', 120],
             ],
-            type : 'donut'
+            type: 'donut'
         },
         donut: {
             title: "Iris Petal Width"
@@ -101,11 +105,14 @@ $(function () {
     // Generate chart
     var bar_chart = c3.generate({
         bindto: '#c3-bar-chart',
-        size: { height: 400 },
+        size: {
+            height: 250
+        },
         data: {
             columns: [
-                ['data1', 30, 200, 100, 400, 150, 250],
-                ['data2', 130, 100, 140, 200, 150, 50]
+                ['data1', 130, 38, 22],
+                ['data2', 100, 40, 100],
+                ['data3', 80, 30, 80]
             ],
             type: 'bar'
         },
@@ -124,14 +131,14 @@ $(function () {
         }
     });
 
-    // Change data
+    /* Change data
     setTimeout(function () {
         bar_chart.load({
             columns: [
                 ['data3', 130, -150, 200, 300, -200, 100]
             ]
         });
-    }, 6000);
+    }, 6000);*/
 
 
 
@@ -141,7 +148,9 @@ $(function () {
     // Generate chart
     var bar_stacked_chart = c3.generate({
         bindto: '#c3-bar-stacked-chart',
-        size: { height: 400 },
+        size: {
+            height: 400
+        },
         color: {
             pattern: ['#FF9800', '#F44336', '#009688', '#4CAF50']
         },
@@ -161,22 +170,30 @@ $(function () {
                 show: true
             },
             y: {
-                lines: [{value:0}]
+                lines: [{
+                    value: 0
+                }]
             }
         }
     });
 
     // Change data
     setTimeout(function () {
-        bar_stacked_chart.groups([['data1', 'data2', 'data3']])
+        bar_stacked_chart.groups([
+            ['data1', 'data2', 'data3']
+        ])
     }, 4000);
     setTimeout(function () {
         bar_stacked_chart.load({
-            columns: [['data4', 100, -50, 150, 200, -300, -100]]
+            columns: [
+                ['data4', 100, -50, 150, 200, -300, -100]
+            ]
         });
     }, 8000);
     setTimeout(function () {
-        bar_stacked_chart.groups([['data1', 'data2', 'data3', 'data4']])
+        bar_stacked_chart.groups([
+            ['data1', 'data2', 'data3', 'data4']
+        ])
     }, 10000);
 
 
@@ -187,7 +204,9 @@ $(function () {
     // Generate chart
     var combined_chart = c3.generate({
         bindto: '#c3-combined-chart',
-        size: { height: 400 },
+        size: {
+            height: 400
+        },
         color: {
             pattern: ['#FF9800', '#F44336', '#009688', '#4CAF50', '#03A9F4', '#8BC34A']
         },
@@ -207,7 +226,7 @@ $(function () {
                 data6: 'area',
             },
             groups: [
-                ['data1','data2']
+                ['data1', 'data2']
             ]
         }
     });
@@ -219,7 +238,9 @@ $(function () {
 
     // Generate chart
     var scatter_chart = c3.generate({
-        size: { height: 400 },
+        size: {
+            height: 400
+        },
         bindto: '#c3-scatter-chart',
         data: {
             xs: {
@@ -242,7 +263,9 @@ $(function () {
                 show: true
             }
         },
-        point: { r: 5 },
+        point: {
+            r: 5
+        },
         axis: {
             x: {
                 label: 'Sepal.Width',
@@ -284,7 +307,7 @@ $(function () {
 
 
     // Resize chart on sidebar width change
-    $(".sidebar-control").on('click', function() {
+    $(".sidebar-control").on('click', function () {
         pie_chart.resize();
         donut_chart.resize();
         bar_chart.resize();
