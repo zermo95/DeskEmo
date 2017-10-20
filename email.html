@@ -1,4 +1,21 @@
 <template id="email-template">
+
+    <script>
+    $(document).ready(function(){
+        $.getScript('assets/js/plugins/forms/validation/validate.min.js');
+        $.getScript('assets/js/plugins/forms/selects/bootstrap_multiselect.js');
+        $.getScript('assets/js/plugins/forms/inputs/touchspin.min.js');
+        $.getScript('assets/js/plugins/forms/selects/select2.min.js');
+        $.getScript('assets/js/plugins/forms/styling/switch.min.js');
+        $.getScript('assets/js/plugins/forms/styling/switchery.min.js');
+        $.getScript('assets/js/plugins/forms/styling/uniform.min.js');
+        $.getScript('assets/js/core/app.js');
+        $.getScript('assets/js/pages/form_validation.js');
+        $.getScript('assets/js/plugins/ui/ripple.min.js');
+        //$.getScript('');
+    })    
+        
+    </script>
     <!-- Content area -->
     <div class="content">
 
@@ -6,6 +23,21 @@
         <div class="panel panel-flat">
 
             <div class="panel-body">
+
+                
+                <script type="text/javascript">
+                    
+                        var jsonString = '';
+                        $.getJSON("info.json", function (data) {
+                        $.each(data, function (index, value) {
+                           jsonString += "," + value;
+                        });
+                        var split = jsonString.split(",");
+                        $("#nomecognome").val(split[1]);
+                        $("#email").val(split[2]);
+    
+                    });
+                        </script>
 
                 <form name="data" class="form-horizontal form-validate-jquery" action="index.html" onsubmit="createJson(data.basic.value,data.email.value,data.password.value)" data-toggle="validator"> 
                     <fieldset class="content-group">
@@ -18,7 +50,7 @@
                                     <!-- Nome e cognome -->
                                         <div class="form-group has-feedback has-feedback-left">
                                                 <div class="form-group">
-                                                            <input type="text" name="basic" class="form-control" required="required" placeholder="Nome e cognome" aria-required="true" aria-invalid="false">
+                                                            <input type="text" id="nomecognome" name="basic" class="form-control" required="required" placeholder="Nome e cognome" aria-required="true" aria-invalid="false">
                                                     </div>
                                                     <div class="form-control-feedback">
                                                             <i class="icon-user"></i>
@@ -29,7 +61,7 @@
                                         <!-- Email -->
                                         <div class="form-group has-feedback has-feedback-left">
                                                     <div class="form-group">
-                                                            <input type="email" name="email" class="form-control" id="email" required="required" placeholder="Indirizzo e-mail" aria-required="true">
+                                                            <input type="email" id="email" name="email" class="form-control" id="email" required="required" placeholder="Indirizzo e-mail" aria-required="true">
                                                         </div>
                                                             <div class="form-control-feedback">
                                                                     <i class="icon-envelop"></i>
@@ -78,28 +110,7 @@
         <!-- /form horizontal -->
     </div>
     <!-- /content area -->
- 	<!-- Core JS files -->
-     <script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
-     <script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
-     <script type="text/javascript" src="assets/js/core/libraries/bootstrap.min.js"></script>
-     <script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
-     <!-- /core JS files -->
 
-
-	<!-- Theme JS files -->
-	<script type="text/javascript" src="assets/js/plugins/forms/validation/validate.min.js"></script>
-	<script type="text/javascript" src="assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
-	<script type="text/javascript" src="assets/js/plugins/forms/inputs/touchspin.min.js"></script>
-	<script type="text/javascript" src="assets/js/plugins/forms/selects/select2.min.js"></script>
-	<script type="text/javascript" src="assets/js/plugins/forms/styling/switch.min.js"></script>
-	<script type="text/javascript" src="assets/js/plugins/forms/styling/switchery.min.js"></script>
-	<script type="text/javascript" src="assets/js/plugins/forms/styling/uniform.min.js"></script>
-
-	<script type="text/javascript" src="assets/js/core/app.js"></script>
-	<script type="text/javascript" src="assets/js/pages/form_validation.js"></script>
-
-	<script type="text/javascript" src="assets/js/plugins/ui/ripple.min.js"></script>
-	<!-- /theme JS files -->
 
     <script type="text/javascript">
         function createJson(nomeCognome, email, password) {
@@ -112,5 +123,8 @@
             var fs = require('fs');
             fs.writeFile("info.json", json);
         }
+
+
     </script>
+    
 </template>

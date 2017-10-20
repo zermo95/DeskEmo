@@ -28,7 +28,8 @@ imap.once('ready', function () {
         }
         if (err) throw err;
         imap.search(['UNSEEN'], function (err, results) {
-            if (err) throw err;
+            if (err) throw err;            
+            if(results.length != 0){
             var f = imap.fetch(results, {
                 bodies: '',
                 struct: true,
@@ -56,25 +57,24 @@ imap.once('ready', function () {
 
                                 console.log(emailAddressDir);
 
+
+                                //Controlla esistenza cartella indirizzo email
                                 if (!fs.existsSync(emailAddressDir))
                                     fs.mkdirSync(emailAddressDir);
                                     
+                                    //Verifica cartella email corrispondente al message id
                                     if (!fs.existsSync(emailDir)){
                                         fs.mkdirSync(emailDir);
                                 console.log(mail.headers.get('subject'));
                                 var mailInfo = "FROM:" + mail.from.text + "\nSUBJECT:" + mail.subject + "\n\nBODY:" + mail.text;
-                                console.log("MAIL INFO \n" + mailInfo);
 
                                 //Salvataggio degli allegati
                                 var arrayLength = mail.attachments.length;
                                 for (var i = 0; i < arrayLength; i++){
-                                console.log("Allegato SIZE:" + mail.attachments[i].size);   
-                                console.log("Allegato NAME:" + mail.attachments[i].filename);
                                 var filename = mail.attachments[i].filename;
                                 var find = ':';
                                 var re = new RegExp(find, 'g');
                                 filename = filename.replace(re, '_');
-                                console.log("Allegato name:" + filename);
                                 fs.writeFile(emailDir +'/'+ filename, mail.attachments[i].content, function(err) {
                                     if(err) {
                                         return console.log("Errore nel salvataggio dell'allegato"+err);
@@ -109,10 +109,6 @@ imap.once('ready', function () {
                              
                 
             });
-
-                msg.once('end', function () {
-                    console.log('Finished');
-                });
             
                 
 
@@ -124,7 +120,7 @@ imap.once('ready', function () {
                 console.log('Done fetching all messages!');
                 imap.end();
             });
-
+        }
         });
     });
 });

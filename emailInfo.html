@@ -1,0 +1,110 @@
+<template id="emailInfo-template">
+    <!-- Content area -->
+    <div class="content">
+
+        <!-- Form horizontal -->
+        <div class="panel panel-flat">
+
+            <div class="panel-body">
+
+                <script type="text/javascript">
+                
+                    var jsonString = '';
+                    $.getJSON("info.json", function (data) {
+                    $.each(data, function (index, value) {
+                       jsonString += "," + value;
+                    });
+                    var split = jsonString.split(",");
+                    $("#nomecognome").val(split[1]);
+                    $("#email").val(split[2]);
+                    $("#password").val("**********");
+
+                });
+                    </script>
+
+                <form name="data" class="form-horizontal"> 
+                    <fieldset class="content-group">
+                        <legend class="text-bold">Configurazione account</legend>
+
+                        
+                            <div class="col-lg-10">
+                                <div class="row">
+
+                                    <!-- Nome e cognome -->
+                                        <div class="form-group has-feedback has-feedback-left">
+                                                <div class="form-group">
+                                                            <input type="text" id="nomecognome" name="basic" class="form-control" required="required" aria-required="true" aria-invalid="false" readonly="readonly">
+                                                    </div>
+                                                    <div class="form-control-feedback">
+                                                            <i class="icon-user"></i>
+                                                        </div>
+                                                    </div>
+                                    <!-- /Nome e cognome -->
+
+                                        <!-- Email -->
+                                        <div class="form-group has-feedback has-feedback-left">
+                                                    <div class="form-group">
+                                                            <input type="email" id="email" name="email" class="form-control" id="email" required="required" aria-required="true" readonly="readonly">
+                                                        </div>
+                                                            <div class="form-control-feedback">
+                                                                    <i class="icon-envelop"></i>
+                                                                </div>
+                                                        
+                                                        </div>
+                                        <!--/Email -->
+
+                                    <!-- Password -->
+                                    <div class="form-group has-feedback has-feedback-left">
+                                    <div class="form-group">
+											<input type="password" name="password" id="password" class="form-control" required="required" aria-required="true" readonly="readonly">
+                                        </div>
+                                            <div class="form-control-feedback">
+                                                <i class="icon-lock2"></i>
+                                            </div>
+                                    </div>
+                                    <!-- /Password-->
+
+                                </div>
+                                <!-- /row -->
+                             </div>
+                             <!-- /col-->
+
+                    </fieldset>
+
+                    <div class="text-right">
+                        <button id="closeButton" type="button" onclick="caricaSezione('email')" class="btn btn-primary">MODIFICA
+                        </button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /form horizontal -->
+    </div>
+    <!-- /content area -->
+ 	<!-- Core JS files -->
+     <script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
+     <script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
+     <script type="text/javascript" src="assets/js/core/libraries/bootstrap.min.js"></script>
+     <script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
+     <!-- /core JS files -->
+
+
+	<!-- Theme JS files -->
+	<script type="text/javascript" src="assets/js/plugins/forms/validation/validate.min.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/forms/inputs/touchspin.min.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/forms/selects/select2.min.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/forms/styling/switch.min.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/forms/styling/switchery.min.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/forms/styling/uniform.min.js"></script>
+
+	<script type="text/javascript" src="assets/js/core/app.js"></script>
+	<script type="text/javascript" src="assets/js/pages/form_validation.js"></script>
+
+	<script type="text/javascript" src="assets/js/plugins/ui/ripple.min.js"></script>
+	<!-- /theme JS files -->
+
+  
+    
+</template>
