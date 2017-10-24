@@ -66,7 +66,7 @@ imap.once('ready', function () {
                                     if (!fs.existsSync(emailDir)){
                                         fs.mkdirSync(emailDir);
                                 console.log(mail.headers.get('subject'));
-                                var mailInfo = "FROM:" + mail.from.text + "\nSUBJECT:" + mail.subject + "\n\nBODY:" + mail.text;
+                                var mailInfo = "FROM:" + mail.from.text + ";\nSUBJECT:" + mail.subject + ";\n\nBODY:" + mail.text + ";";
 
                                 //Salvataggio degli allegati
                                 var arrayLength = mail.attachments.length;
