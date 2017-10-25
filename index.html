@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
- 
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,6 +31,7 @@
     <script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
     <script type="text/javascript" src="assets/js/core/libraries/bootstrap.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
+    <script type="text/javascript" src="assets/js/core/app.js"></script>
     <!-- /core JS files -->
 
     <!-- Insert this line after script imports -->
@@ -51,8 +52,6 @@
 </head>
 
 <body class="navbar-top">
-
-    
     <!-- Main navbar -->
     <div class="navbar navbar-default navbar-fixed-top header-highlight">
         <div class="navbar-header bg-danger-600">
@@ -515,7 +514,7 @@
 
                         var clone = document.importNode(template.content, true);
 
-                        console.log(link);
+                        //console.log(link);
 
                         document.querySelector('#contenuto').innerHTML = '';
                         document.querySelector('#contenuto').appendChild(clone);
@@ -542,13 +541,13 @@
     </div>
     <!-- /page container -->
 
-
+    <!--
     <script>
         $(document).ready(function () {
             caricaSezione('single-report')
         });
     </script>
-
+    -->
 
 </body>
 

@@ -5,15 +5,11 @@
             <div class="page-title">
                 <h4>
                     <i class="icon-arrow-left52 position-left"></i>
-                    <span class="text-semibold">Report</span></h4>
+                    <span class="text-semibold">Report</span>
+                </h4>
             </div>
         </div>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#modal_emailInfo').modal('show');
-            });
-        </script>
-   </div>
+    </div>
     <!-- /page header -->
 
 
@@ -27,69 +23,11 @@
 
             <div class="panel-body">
                 In questa sezione saranno mostrati i report inoltrati dai Vs. pazienti.
-<!-- Script per la scansione di tutte le directory e sub-directory contenute nella cartella email -->
-<script>
-const folder = './email/';
-const fs = require('fs');
-var addressDir = new Array();
-var readEmail = new Array();
-var unreadEmail = new Array();
-var i = 0;
-var z = 0;
-//Memorizza i percorsi delle directory contenute nella directory email, nell'array addressDir
-fs.readdirSync(folder).forEach(file => {
-    addressDir[i] = folder + file + "/";
-    i++;
-});
-
-//Memorizza i percorsi delle directory delle singole email lette e non lette in due array distinti
-var j = 0;
-var k = 0;
-for(z = 0; z < addressDir.length; z++){
-    var newFolder = addressDir[z];
-    fs.readdirSync(newFolder).forEach(file => {
-        if (fs.existsSync(newFolder + file + "/read.txt")) {
-            readEmail[k] = newFolder + file + "/";
-            k++;
-                        }
-    else {
-        unreadEmail[j] = newFolder+ file + "/";
-            j++;
-    }
-});
-
-}
-
-//Riempi la datatable report con le email non ancora lette
-for ( var i = 0; i < unreadEmail.length; i++){
-    var emailInfo = fs.readFileSync(unreadEmail[i]+'emailInfo.txt','utf8');
-    var paziente = emailInfo.match("FROM:(.*) <");
-    var emailAddress = emailInfo.match("<(.*)>");
-    var info = emailInfo.match("BODY:(.*)\n");
-
-    $('#report > tbody:last-child').append('<tr><td>'+paziente[1]+'</td><td>'+emailAddress[1]+'</td><td>'+info[1]+'</td><td><span class="label label-success">Nuova</span></td><td class="text-center"><button type="button" class="btn legitRipple" id="'+emailInfo+'" data-toggle="modal" data-target="#modal_emailInfo" onclick=setModalContent(this.id)><i class="icon-enlarge7 position-left"></i> Visualizza</button></td></tr>');
-
-}
-
-//Riempi la datatable report con le email già lette
-for ( var i = 0; i < readEmail.length; i++){
-    var emailInfo = fs.readFileSync(readEmail[i]+'emailInfo.txt','utf8');
-    var paziente = emailInfo.match("FROM:(.*) <");
-    var emailAddress = emailInfo.match("<(.*)>");
-    var info = emailInfo.match("BODY:(.*)\n");
-    
-    $('#report > tbody:last-child').append('<tr><td>'+paziente[1]+'</td><td>'+emailAddress[1]+'</td><td>'+info[1]+'</td><td><span class="label label-default">Letta</span></td><td class="text-center"><button type="button" class="btn legitRipple" onclick=setModalContent("Ciao")><i class="icon-enlarge7 position-left"></i> Visualizza</button></td></tr>');
-
-}
-
-
-function setModalContent(modal_title){
-        alert("FSFSFS");
-        $("#modal_title").text(modal_title);
-
-    }
-    
-</script>
+                <!-- Script per la scansione di tutte le directory e sub-directory contenute nella cartella email -->
+                <script>
+                    // lo script è stato spostato nella cartella renderer-process 
+                    // viene poi richiamato on document ready in fondo a questa pagina
+                </script>
 
             </div>
 
@@ -104,8 +42,8 @@ function setModalContent(modal_title){
                     </tr>
                 </thead>
                 <tbody>
- 
-                   
+
+
                 </tbody>
             </table>
         </div>
@@ -113,26 +51,33 @@ function setModalContent(modal_title){
     </div>
     <!-- /content area -->
 
-    <div id="modal_emailInfo" class="modal fade in" style="display: block; padding-right: 15px;">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">×</button>
-                        <h5 class="modal-title" id="modal_title"></h5>
-                    </div>
-        
-                    <div class="modal-body">
-                        <p id="corpo">
-                        </p>
-                    </div>
-        
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary legitRipple" data-dismiss="modal">Chiudi</button>
-                    </div>
+    <div id="modal_emailInfo" class="modal fade in">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h5 class="modal-title" id="modal_title"></h5>
+                </div>
+
+                <div class="modal-body">
+                    <p id="corpo">
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary legitRipple" data-dismiss="modal">Chiudi</button>
                 </div>
             </div>
         </div>
-    <script type="text/javascript" src="assets/js/pages/datatables_basic.js"></script>
-    <script type="text/javascript" src="assets/js/core/app.js"></script>    
+    </div>
 
+    <script>
+        $(document).ready(function () {
+            $.getScript('assets/js/plugins/tables/datatables/datatables.min.js');
+            $.getScript('assets/js/plugins/forms/selects/select2.min.js');
+            $.getScript('assets/js/core/app.js');
+            $.getScript('assets/js/pages/datatables_basic.js');
+            $.getScript('renderer-process/report-table.js');
+        })
+    </script>
 </template>

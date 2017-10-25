@@ -2326,5 +2326,14 @@
         <!-- /scrollable datatable -->
     </div>
     <!-- /content area -->
-    <script type="text/javascript" src="assets/js/pages/datatables_basic.js"></script>    
+
+    <script>
+        $(document).ready(function () {
+            // File script necessari per l'anteprima della congiuntiva
+            $.getScript('assets/js/plugins/tables/datatables/datatables.min.js');
+            $.getScript('assets/js/plugins/forms/selects/select2.min.js');
+            $.getScript('assets/js/core/app.js');            
+            $.getScript('assets/js/pages/datatables_basic.js');
+        })
+    </script>
 </template>
