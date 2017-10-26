@@ -1,21 +1,5 @@
 <template id="email-template">
 
-    <script>
-    $(document).ready(function(){
-        $.getScript('assets/js/plugins/forms/validation/validate.min.js');
-        $.getScript('assets/js/plugins/forms/selects/bootstrap_multiselect.js');
-        $.getScript('assets/js/plugins/forms/inputs/touchspin.min.js');
-        $.getScript('assets/js/plugins/forms/selects/select2.min.js');
-        $.getScript('assets/js/plugins/forms/styling/switch.min.js');
-        $.getScript('assets/js/plugins/forms/styling/switchery.min.js');
-        $.getScript('assets/js/plugins/forms/styling/uniform.min.js');
-        $.getScript('assets/js/core/app.js');
-        $.getScript('assets/js/pages/form_validation.js');
-        $.getScript('assets/js/plugins/ui/ripple.min.js');
-        //$.getScript('');
-    })    
-        
-    </script>
     <!-- Content area -->
     <div class="content">
 
@@ -24,78 +8,80 @@
 
             <div class="panel-body">
 
-                
+
                 <script type="text/javascript">
-                    
-                        var jsonString = '';
-                        $.getJSON("info.json", function (data) {
+                    var jsonString = '';
+                    $.getJSON("info.json", function (data) {
                         $.each(data, function (index, value) {
-                           jsonString += "," + value;
+                            jsonString += "," + value;
                         });
                         var split = jsonString.split(",");
                         $("#nomecognome").val(split[1]);
                         $("#email").val(split[2]);
-    
-                    });
-                        </script>
 
-                <form name="data" class="form-horizontal form-validate-jquery" action="index.html" onsubmit="createJson(data.basic.value,data.email.value,data.password.value)" data-toggle="validator"> 
+                    });
+                </script>
+
+                <form name="data" class="form-horizontal form-validate-jquery" action="index.html" onsubmit="createJson(data.basic.value,data.email.value,data.password.value)"
+                    data-toggle="validator">
                     <fieldset class="content-group">
                         <legend class="text-bold">Configurazione account</legend>
 
-                        
-                            <div class="col-lg-10">
-                                <div class="row">
 
-                                    <!-- Nome e cognome -->
-                                        <div class="form-group has-feedback has-feedback-left">
-                                                <div class="form-group">
-                                                            <input type="text" id="nomecognome" name="basic" class="form-control" required="required" placeholder="Nome e cognome" aria-required="true" aria-invalid="false">
-                                                    </div>
-                                                    <div class="form-control-feedback">
-                                                            <i class="icon-user"></i>
-                                                        </div>
-                                                    </div>
-                                    <!-- /Nome e cognome -->
+                        <div class="col-lg-10">
+                            <div class="row">
 
-                                        <!-- Email -->
-                                        <div class="form-group has-feedback has-feedback-left">
-                                                    <div class="form-group">
-                                                            <input type="email" id="email" name="email" class="form-control" id="email" required="required" placeholder="Indirizzo e-mail" aria-required="true">
-                                                        </div>
-                                                            <div class="form-control-feedback">
-                                                                    <i class="icon-envelop"></i>
-                                                                </div>
-                                                        
-                                                        </div>
-                                        <!--/Email -->
-
-                                    <!-- Password -->
-                                    <div class="form-group has-feedback has-feedback-left">
+                                <!-- Nome e cognome -->
+                                <div class="form-group has-feedback has-feedback-left">
                                     <div class="form-group">
-											<input type="password" name="password" id="password" class="form-control" required="required" placeholder="Password" aria-required="true">
-                                        </div>
-                                            <div class="form-control-feedback">
-                                                <i class="icon-lock2"></i>
-                                            </div>
+                                        <input type="text" id="nomecognome" name="basic" class="form-control" required="required" placeholder="Nome e cognome" aria-required="true"
+                                            aria-invalid="false">
                                     </div>
-                                    <!-- /Password-->
-                                    
-                                    <!-- Ripeti password -->
-                                    <div class="form-group has-feedback has-feedback-left">
+                                    <div class="form-control-feedback">
+                                        <i class="icon-user"></i>
+                                    </div>
+                                </div>
+                                <!-- /Nome e cognome -->
+
+                                <!-- Email -->
+                                <div class="form-group has-feedback has-feedback-left">
                                     <div class="form-group">
-										<input type="password" name="repeat_password" class="form-control" required="required" placeholder="Ripeti la password" aria-required="true">
-                                        </div>
-                                        <div class="form-control-feedback">
-                                            <i class="icon-lock2"></i>
-                                        </div>
+                                        <input type="email" id="email" name="email" class="form-control" id="email" required="required" placeholder="Indirizzo e-mail"
+                                            aria-required="true">
                                     </div>
-                                    <!-- /Ripeti password-->
+                                    <div class="form-control-feedback">
+                                        <i class="icon-envelop"></i>
+                                    </div>
 
                                 </div>
-                                <!-- /row -->
-                             </div>
-                             <!-- /col-->
+                                <!--/Email -->
+
+                                <!-- Password -->
+                                <div class="form-group has-feedback has-feedback-left">
+                                    <div class="form-group">
+                                        <input type="password" name="password" id="password" class="form-control" required="required" placeholder="Password" aria-required="true">
+                                    </div>
+                                    <div class="form-control-feedback">
+                                        <i class="icon-lock2"></i>
+                                    </div>
+                                </div>
+                                <!-- /Password-->
+
+                                <!-- Ripeti password -->
+                                <div class="form-group has-feedback has-feedback-left">
+                                    <div class="form-group">
+                                        <input type="password" name="repeat_password" class="form-control" required="required" placeholder="Ripeti la password" aria-required="true">
+                                    </div>
+                                    <div class="form-control-feedback">
+                                        <i class="icon-lock2"></i>
+                                    </div>
+                                </div>
+                                <!-- /Ripeti password-->
+
+                            </div>
+                            <!-- /row -->
+                        </div>
+                        <!-- /col-->
 
                     </fieldset>
 
@@ -112,7 +98,7 @@
     <!-- /content area -->
 
 
-    <script type="text/javascript">
+    <script>
         function createJson(nomeCognome, email, password) {
             var info = {
                 "nomeCognome": nomeCognome,
@@ -123,8 +109,25 @@
             var fs = require('fs');
             fs.writeFile("info.json", json);
         }
-
-
     </script>
-    
+
+    <script>
+        $(document).ready(function () {
+            $.getScript('assets/js/plugins/forms/validation/validate.min.js');
+            $.getScript('assets/js/plugins/forms/selects/bootstrap_multiselect.js');
+            $.getScript('assets/js/plugins/forms/inputs/touchspin.min.js');
+            $.getScript('assets/js/plugins/forms/selects/select2.min.js');
+            $.getScript('assets/js/plugins/forms/styling/switch.min.js');
+            $.getScript('assets/js/plugins/forms/styling/switchery.min.js');
+            $.getScript('assets/js/plugins/forms/styling/uniform.min.js');
+
+            $.getScript('assets/js/core/app.js');
+            $.getScript('assets/js/pages/form_validation.js');
+
+            $.getScript('assets/js/plugins/ui/ripple.min.js');
+            //$.getScript('');
+        })
+    </script>
+
+
 </template>
