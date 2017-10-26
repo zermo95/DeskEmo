@@ -1,7 +1,7 @@
 FROM:Tommaso Massaro <tommy.931@live.it>;
 SUBJECT:Analisi Emoglobina - Tommaso Massaro;
 
-BODY:Analisi del giorno 18-10-2017
+BODY:Analisi del giorno 18-10-2017<br>
 
 Tommaso Massaro
 25/10/1993
