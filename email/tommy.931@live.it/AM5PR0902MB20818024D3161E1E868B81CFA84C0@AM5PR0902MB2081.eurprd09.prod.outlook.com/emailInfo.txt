@@ -1,6 +1,0 @@
-FROM:Tommaso Massaro <tommy.931@live.it>;
-SUBJECT:EMAIL DI TEST CON ALLEGATO;
-
-BODY:Email di test con immagine allegata
-
-;

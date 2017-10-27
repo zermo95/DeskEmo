@@ -53,6 +53,7 @@ imap.once('ready', function () {
                             simpleParser(buffer, (err, mail) => {
                                 var emailAddress = mail.from.text.match("<(.*)>");
                                 var emailAddressDir = 'email/' + emailAddress[1];
+                                var anagraficaDir = 'anagrafiche/' + emailAddress[1];
                                 var emailDir = emailAddressDir + '/' + messageID[1];
 
                                 console.log(emailAddressDir);
@@ -62,12 +63,32 @@ imap.once('ready', function () {
                                 if (!fs.existsSync(emailAddressDir))
                                     fs.mkdirSync(emailAddressDir);
 
+                                //Controlla esistenza cartella anagrafica
+                                if (!fs.existsSync(anagraficaDir)){
+                                fs.mkdirSync(anagraficaDir);
+
+                                //Creazione stringa anagrafica da salvare su file
+                                var bDay = mail.text.match(/\d{2}([\/.-])\d{2}\1\d{4}/g);
+                                var nomeCognome = mail.from.text.match('(.*)<');
+                                var email = mail.from.text.match('<(.*)>');
+                                var codiceFiscale = mail.text.match('Fiscale: (.*)\n');
+                                var anagrafica = "NomeCognome:" +nomeCognome[1]+ ";\n" + "Bday:" + bDay[1] +";\n" + "CodiceFiscale:"+ codiceFiscale[1] + ";\n"  + "IndirizzoEmail:" + email[1]+ ";";
+                                
+                                //Salvataggio dell'anagrafica nella directory corrispondente
+                                fs.writeFile(anagraficaDir + '/anagrafica.txt', anagrafica, function (err) {
+                                            if (err) {
+                                                return console.log("Errore nel salvataggio dell'allegato" + err);
+                                            }
+                                            console.log("The file was saved!");
+                                });
+
+                            }
                                 //Verifica cartella email corrispondente al message id
                                 if (!fs.existsSync(emailDir)) {
                                     fs.mkdirSync(emailDir);
                                     console.log(mail.headers.get('subject'));
                                     var mailInfo = "FROM:" + mail.from.text + ";\nSUBJECT:" + mail.subject + ";\n\nBODY:" + mail.text + ";";
-
+                                
                                     //Salvataggio degli allegati
                                     var arrayLength = mail.attachments.length;
                                     for (var i = 0; i < arrayLength; i++) {
