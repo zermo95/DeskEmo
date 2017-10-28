@@ -20,9 +20,9 @@ for (var i = 0; i < addressDir.length; i++) {
     var codiceFiscale = anagrafica.match('CodiceFiscale:(.*);');
     var email = anagrafica.match('IndirizzoEmail:(.*);');
 
-  var pazientiTable = $('#pazienti').DataTable();
-    
-   pazientiTable.row.add( [nomeCognome[1], codiceFiscale[1], bDay[1], email[1], '<button type="button" class="btn btn-info legitRipple" id="'+addressDir[i]+'" data-toggle="modal" data-target="#modal_emailInfo" onclick=setModalContent(this.id)><i class="icon-user position-left"></i> Visualizza</button>', '']).draw();
+    var pazientiTable = $('#pazienti').DataTable();
+
+    pazientiTable.row.add([nomeCognome[1], codiceFiscale[1], bDay[1], email[1], '<button type="button" class="btn btn-info legitRipple" id="' + addressDir[i] + '" data-toggle="modal" data-target="#modal_emailInfo" onclick=setModalContent(this.id)><i class="icon-user position-left"></i> Visualizza</button>', '']).draw();
 
 
 }
@@ -34,20 +34,20 @@ function setModalContent(path) {
     var intestazione = emailInfo.match("SUBJECT:(.*);");
     var emailAddress = emailInfo.match("<(.*)>");
     var info = emailInfo.match("BODY:((.|\n)*);");
-   // info[1].html(obj.html().replace(/\n/g,'<br/>'));
+    // info[1].html(obj.html().replace(/\n/g,'<br/>'));
     var imageArray = new Array();
     var i = 0;
     fs.readdirSync(path).forEach(file => {
         if (file != "read.txt" && file != "emailInfo.txt") {
-            imageArray[i]=file;
+            imageArray[i] = file;
             i++;
-        } 
+        }
     });
 
     $("#modal_title").text(intestazione[1]);
     $("#modal_body").text(info[1]);
- 
-    $("#image1").attr("src", path  +imageArray[0]);
-    $("#image2").attr("src", path  +imageArray[1]);
+
+    $("#image1").attr("src", path + imageArray[0]);
+    $("#image2").attr("src", path + imageArray[1]);
 
 }

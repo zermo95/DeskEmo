@@ -38,9 +38,9 @@ for (var i = 0; i < unreadEmail.length; i++) {
     var emailAddress = emailInfo.match("<(.*)>");
     var info = emailInfo.match("BODY:(.*)\n");
 
-  var reportTable = $('#report').DataTable();
-    
-   reportTable.row.add( [paziente[1], emailAddress[1], info[1], '<span class="label label-success">Nuova</span>', '<button type="button" class="btn legitRipple" id="'+unreadEmail[i]+'" data-toggle="modal" data-target="#modal_emailInfo" onclick=setModalContent(this.id)><i class="icon-enlarge7 position-left"></i> Visualizza</button>', '']).draw();
+    var reportTable = $('#report').DataTable();
+
+    reportTable.row.add([paziente[1], emailAddress[1], info[1], '<span class="label label-success">Nuova</span>', '<button type="button" class="btn legitRipple" id="' + unreadEmail[i] + '" data-toggle="modal" data-target="#modal_emailInfo" onclick=setModalContent(this.id)><i class="icon-enlarge7 position-left"></i> Visualizza</button>', '']).draw();
 
 
 }
@@ -53,13 +53,13 @@ for (var i = 0; i < readEmail.length; i++) {
     var info = emailInfo.match("BODY:(.*)\n");
 
     var reportTable = $('#report').DataTable();
-    
-   reportTable.row.add( [paziente[1], emailAddress[1], info[1], '<span class="label label-default">Letta</span>', '<button type="button" class="btn legitRipple" id="'+readEmail[i]+'" data-toggle="modal" data-target="#modal_emailInfo" onclick=setModalContent(this.id)><i class="icon-enlarge7 position-left"></i> Visualizza</button>', '']).draw();
 
-   /* $('#report > tbody:last-child').append('<tr><td>' + paziente[1] + '</td><td>' + emailAddress[1] +
-        '</td><td>' + info[1] +
-        '</td><td><span class="label label-default">Letta</span></td><td class="text-center"><button type="button" class="btn legitRipple" onclick=setModalContent("Ciao")><i class="icon-enlarge7 position-left"></i> Visualizza</button></td></tr>'
-    ); */
+    reportTable.row.add([paziente[1], emailAddress[1], info[1], '<span class="label label-default">Letta</span>', '<button type="button" class="btn legitRipple" id="' + readEmail[i] + '" data-toggle="modal" data-target="#modal_emailInfo" onclick=setModalContent(this.id)><i class="icon-enlarge7 position-left"></i> Visualizza</button>', '']).draw();
+
+    /* $('#report > tbody:last-child').append('<tr><td>' + paziente[1] + '</td><td>' + emailAddress[1] +
+         '</td><td>' + info[1] +
+         '</td><td><span class="label label-default">Letta</span></td><td class="text-center"><button type="button" class="btn legitRipple" onclick=setModalContent("Ciao")><i class="icon-enlarge7 position-left"></i> Visualizza</button></td></tr>'
+     ); */
 }
 
 
@@ -69,20 +69,20 @@ function setModalContent(path) {
     var intestazione = emailInfo.match("SUBJECT:(.*);");
     var emailAddress = emailInfo.match("<(.*)>");
     var info = emailInfo.match("BODY:((.|\n)*);");
-   // info[1].html(obj.html().replace(/\n/g,'<br/>'));
+    // info[1].html(obj.html().replace(/\n/g,'<br/>'));
     var imageArray = new Array();
     var i = 0;
     fs.readdirSync(path).forEach(file => {
         if (file != "read.txt" && file != "emailInfo.txt") {
-            imageArray[i]=file;
+            imageArray[i] = file;
             i++;
-        } 
+        }
     });
 
     $("#modal_title").text(intestazione[1]);
     $("#modal_body").text(info[1]);
- 
-    $("#image1").attr("src", path  +imageArray[0]);
-    $("#image2").attr("src", path  +imageArray[1]);
+
+    $("#image1").attr("src", path + imageArray[0]);
+    $("#image2").attr("src", path + imageArray[1]);
 
 }
