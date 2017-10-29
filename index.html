@@ -195,21 +195,18 @@
 
                 <script>
                     function caricaSezione(sezione) {
-
+                        // Carica la sezione da importare
                         var link = document.querySelector('#' + sezione + '-import');
-
                         var template = link.import.querySelector('#' + sezione + '-template');
-
                         var clone = document.importNode(template.content, true);
 
-                        //console.log(link);
-
+                        // Mostra la sezione importata
                         document.querySelector('#contenuto').innerHTML = '';
                         document.querySelector('#contenuto').appendChild(clone);
 
+                        // Evidenzia nel menù la sezione attiva
                         $('li').removeClass('active');
                         $('#' + sezione + '-menu').addClass('active');
-
                     }
                 </script>
 
