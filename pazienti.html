@@ -5,7 +5,8 @@
             <div class="page-title">
                 <h4>
                     <i class="icon-arrow-left52 position-left"></i>
-                    <span class="text-semibold">Pazienti</span></h4>
+                    <span class="text-semibold">Pazienti</span>
+                </h4>
             </div>
         </div>
     </div>
@@ -35,13 +36,40 @@
                     </tr>
                 </thead>
                 <tbody>
- 
+
                 </tbody>
             </table>
         </div>
         <!-- /basic datatable -->
     </div>
     <!-- /content area -->
+
+    <div id="modal_pazientiInfo" class="modal fade in">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-info">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h6 class="modal-title" id="modal_title">Nome Paziente</h5>
+                </div>
+
+                <div class="modal-body">
+                    <h4 style="color:red">Informazioni</h4>
+                    <p id="modal_body" style="white-space: pre-wrap;">
+                    </p>
+                    <br>
+                    <h4 style="color:red">Foto scattata</h4>
+                    <img src="" class="img-responsive" alt="Image 1" id="image1">
+                    <h4 style="color:red">Selezione effettuata</h4>
+                    <img src="" class="img-responsive" alt="Image 2" id="image2">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary legitRipple" data-dismiss="modal">Chiudi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script>
         $(document).ready(function () {

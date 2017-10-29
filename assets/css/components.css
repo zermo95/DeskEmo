@@ -440,7 +440,7 @@ a.badge,
 .navigation > li.active > a,
 .navigation > li.active > a:hover,
 .navigation > li.active > a:focus {
-  background-color: #304047;
+  background-color: #cb2d29;
   color: #fff;
 }
 .navigation > li.active > a > [class*=text-] {

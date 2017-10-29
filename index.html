@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Deskemo Alpha 1.0.0 by AT Software</title>
+    <title>Deskemo Alpha 1.1.0 by AT Software</title>
 
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -152,13 +152,13 @@
                                         <b>Menù Rapido</b>
                                     </span>
                                 </li>
-                                <li>
+                                <li id="pazienti-menu">
                                     <a onclick="caricaSezione('pazienti')">
                                         <i class="icon-people"></i>
                                         <span>Pazienti</span>
                                     </a>
                                 </li>
-                                <li>
+                                <li id="report-menu">
                                     <a onclick="caricaSezione('report')">
                                         <i class="icon-folder-open2"></i>
                                         <span>Report</span>
@@ -171,7 +171,7 @@
                                         <b>Impostazioni</b>
                                     </span>
                                 </li>
-                                <li>
+                                <li id="emailInfo-menu">
                                     <a onclick="caricaSezione('emailInfo')">
                                         <i class="icon-cog"></i>
                                         <span>Email</span>
@@ -206,7 +206,10 @@
                         //console.log(link);
 
                         document.querySelector('#contenuto').innerHTML = '';
-                        document.querySelector('#contenuto').appendChild(clone);                       
+                        document.querySelector('#contenuto').appendChild(clone);
+
+                        $('li').removeClass('active');
+                        $('#' + sezione + '-menu').addClass('active');
 
                     }
                 </script>
@@ -216,8 +219,8 @@
                     <!-- Footer -->
                     <div class="footer text-muted">
                         &copy; 2017.
-                        <a href="#">Desk Emo Alpha 1.0.</a> by
-                        <a href="http://themeforest.net/user/Kopyov" target="_blank">AT Software</a>
+                        <a href="#">Desk Emo Alpha 1.1.0</a> by
+                        <a href="#" target="_blank">AT Software</a>
                     </div>
                     <!-- /footer -->
                 </div>
@@ -230,6 +233,12 @@
 
     </div>
     <!-- /page container -->
+
+    <script>
+        $(document).ready(function () {
+            caricaSezione('report');
+        });
+    </script>
 
 </body>
 

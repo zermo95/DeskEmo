@@ -22,7 +22,7 @@ for (var i = 0; i < addressDir.length; i++) {
 
     var pazientiTable = $('#pazienti').DataTable();
 
-    pazientiTable.row.add([nomeCognome[1], codiceFiscale[1], bDay[1], email[1], '<button type="button" class="btn btn-info legitRipple" id="' + addressDir[i] + '" data-toggle="modal" data-target="#modal_emailInfo" onclick=setModalContent(this.id)><i class="icon-user position-left"></i> Visualizza</button>', '']).draw();
+    pazientiTable.row.add([nomeCognome[1], codiceFiscale[1], bDay[1], email[1], '<button type="button" class="btn btn-info legitRipple" id="' + addressDir[i] + '" data-toggle="modal" data-target="#modal_pazientiInfo" onclick=setModalContent(this.id)><i class="icon-user position-left"></i> Visualizza</button>', '']).draw();
 
 
 }
