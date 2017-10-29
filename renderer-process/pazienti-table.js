@@ -24,21 +24,20 @@ for (var i = 0; i < addressDir.length; i++) {
 
     pazientiTable.row.add([nomeCognome[1], codiceFiscale[1], bDay[1], email[1], '<button type="button" class="btn btn-info legitRipple" id="' + addressDir[i] + '" data-toggle="modal" data-target="#modal_pazientiInfo" onclick=setModalContent(this.id)><i class="icon-user position-left"></i> Visualizza</button>', '']).draw();
 
-
 }
 
 //Copia dell'altra funzione in report-table (DA RISCRIVERE)
 function setModalContent(path) {
-    var emailInfo = fs.readFileSync(path + 'emailInfo.txt', 'utf8');
-    var paziente = emailInfo.match("FROM:(.*) <");
-    var intestazione = emailInfo.match("SUBJECT:(.*);");
-    var emailAddress = emailInfo.match("<(.*)>");
-    var info = emailInfo.match("BODY:((.|\n)*);");
+    var pazienteInfo = fs.readFileSync(path + 'anagrafica.txt', 'utf8');
+    var intestazione = pazienteInfo.match("NomeCognome:(.*);");    
+    var paziente = pazienteInfo.match("FROM:(.*) <");
+    var emailAddress = pazienteInfo.match("<(.*)>");
+    var info = pazienteInfo.match("BODY:((.|\n)*);");
     // info[1].html(obj.html().replace(/\n/g,'<br/>'));
     var imageArray = new Array();
     var i = 0;
     fs.readdirSync(path).forEach(file => {
-        if (file != "read.txt" && file != "emailInfo.txt") {
+        if (file != "read.txt" && file != "pazienteInfo.txt") {
             imageArray[i] = file;
             i++;
         }
