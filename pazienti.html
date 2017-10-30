@@ -1,4 +1,4 @@
-<template id="pazienti-template">
+<template id="pazienti-template">    
     <!-- Page header -->
     <div class="page-header">
         <div class="page-header-content">
@@ -11,7 +11,6 @@
         </div>
     </div>
     <!-- /page header -->
-
 
     <!-- Content area -->
     <div class="content">
@@ -53,23 +52,36 @@
                 </div>
 
                 <div class="modal-body">
-                    <h4 style="color:red">Informazioni</h4>
-                    <p id="modal_body" style="white-space: pre-wrap;">
-                    </p>
-                    <br>
-                    <h4 style="color:red">Foto scattata</h4>
-                    <img src="" class="img-responsive" alt="Image 1" id="image1">
-                    <h4 style="color:red">Selezione effettuata</h4>
-                    <img src="" class="img-responsive" alt="Image 2" id="image2">
+                    <div class=row "">
+                        <div class="col-md-4">
+                            <legend class="text-bold">Dati Anagrafici</legend>
+                            <p>Nome e Cognome:
+                                <span id="nomeCognomeModalPaziente"></span>
+                            </p>
+                            <p>Data di nascita:
+                                <span id="dataNascitaModalPaziente"></span>
+                            </p>
+                            <p>Codice Fiscale:
+                                <span id="codiceFiscaleModalPaziente"></span>
+                            </p>
+                            <p>Indirizzo Email:
+                                <span id="indirizzoEmailModalPaziente"></span>
+                            </p>
+                        </div>
+                        <div class="col-md-8">
+                            <legend class="text-bold">Valore di A* nel tempo</legend>
+                            <div class="chart-container">
+                                <div class="chart" id="c3-grafico-astar"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
                 <div class="modal-footer">
                     <button type="button" class="btn btn-info legitRipple" data-dismiss="modal">Chiudi</button>
                 </div>
             </div>
         </div>
     </div>
-
 
     <script>
         $(document).ready(function () {
@@ -82,6 +94,10 @@
             $.getScript('assets/js/pages/datatables_basic.js');
             $.getScript('renderer-process/pazienti-table.js');
             //$.getScript('assets/js/plugins/ui/ripple.min.js');
+
+            /*$.getScript('assets/js/plugins/visualization/d3/d3.min.js');
+            $.getScript('assets/js/plugins/visualization/c3/c3.min.js');*/
+
         })
     </script>
 

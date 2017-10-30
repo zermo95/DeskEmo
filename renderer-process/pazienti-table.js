@@ -26,27 +26,60 @@ for (var i = 0; i < addressDir.length; i++) {
 
 }
 
-//Copia dell'altra funzione in report-table (DA RISCRIVERE)
+//Copia dell'altra funzione in report-table (rivista per i pazienti)
 function setModalContent(path) {
     var pazienteInfo = fs.readFileSync(path + 'anagrafica.txt', 'utf8');
-    var intestazione = pazienteInfo.match("NomeCognome:(.*);");    
-    var paziente = pazienteInfo.match("FROM:(.*) <");
-    var emailAddress = pazienteInfo.match("<(.*)>");
-    var info = pazienteInfo.match("BODY:((.|\n)*);");
-    // info[1].html(obj.html().replace(/\n/g,'<br/>'));
-    var imageArray = new Array();
-    var i = 0;
-    fs.readdirSync(path).forEach(file => {
-        if (file != "read.txt" && file != "pazienteInfo.txt") {
-            imageArray[i] = file;
-            i++;
+    var intestazione = pazienteInfo.match("NomeCognome:(.*);");
+    var dataDiNascita = pazienteInfo.match("Bday:(.*);");
+    var codiceFiscale = pazienteInfo.match("CodiceFiscale:(.*);");
+    var indirizzoEmail = pazienteInfo.match("IndirizzoEmail:(.*);");
+
+    $("#modal_title").text(intestazione[1]);
+    $('#nomeCognomeModalPaziente').text(intestazione[1]);
+    $('#dataNascitaModalPaziente').text(dataDiNascita[1]);
+    $('#codiceFiscaleModalPaziente').text(codiceFiscale[1]);
+    $('#indirizzoEmailModalPaziente').text(indirizzoEmail[1]);
+
+    // Generate chart
+    var line_chart = c3.generate({
+        bindto: '#c3-grafico-astar',
+        point: {
+            r: 4
+        },
+        size: {
+            height: 400
+        },
+        color: {
+            pattern: ['#4CAF50', '#F4511E', '#1E88E5']
+        },
+        data: {
+            x: 'x',
+            //xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
+            columns: [
+                ['x', '2013-01-01', '2013-01-02', '2013-01-03', '2013-01-04', '2013-01-05', '2013-01-06'],
+                ['A*', 30, 200, 100, 400, 150, 250],
+            ],
+            type: 'spline'
+        },
+        grid: {
+            y: {
+                show: true
+            }
+        },
+        axis: {
+            x: {
+                type: 'timeseries',
+                tick: {
+                    format: '%Y-%m-%d'
+                }
+            }
         }
     });
 
-    $("#modal_title").text(intestazione[1]);
-    $("#modal_body").text(info[1]);
 
-    $("#image1").attr("src", path + imageArray[0]);
-    $("#image2").attr("src", path + imageArray[1]);
-
+    // Grandissima zozzeria per ridimensionare
+    // il grafico in base alla grandezza della modal
+    setTimeout(function () {
+        line_chart.resize();
+    }, 170);
 }
