@@ -53,22 +53,29 @@
     <!-- /content area -->
 
     <div id="modal_emailInfo" class="modal fade in">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-full">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-danger">
                     <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h5 class="modal-title" id="modal_title" style="color:red"></h5>
+                    <h5 class="modal-title" id="modal_title">Analisi Emoglobina paziente X</h5>
                 </div>
 
                 <div class="modal-body">
-                    <h4 style="color:red">Informazioni</h4>
-                    <p id="modal_body" style="white-space: pre-wrap;">
-                    </p>
-                    <br>
-                    <h4 style="color:red">Foto scattata</h4>
-                    <img src="" class="img-responsive" alt="Image 1" id="image1">
-                    <h4 style="color:red">Selezione effettuata</h4>
-                    <img src="" class="img-responsive" alt="Image 2" id="image2">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <legend class="text-bold">Informazioni</legend>
+                            <p id="modal_body" style="white-space: pre-wrap;"></p>
+                        </div>
+                        <div class="col-md-9">
+                            <legend class="text-bold">Allegati foto</legend>
+                            <div class="col-md-6">
+                                <img src="" class="img-responsive" alt="Image 1" id="image1">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="" class="img-responsive" alt="Image 2" id="image2">
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="modal-footer">
@@ -86,7 +93,6 @@
             $.getScript('assets/js/pages/datatables_basic.js');
             $.getScript('renderer-process/report-table.js');
             //$.getScript('assets/js/plugins/ui/ripple.min.js');
-
         })
     </script>
 </template>

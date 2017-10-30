@@ -28,7 +28,6 @@ for (z = 0; z < addressDir.length; z++) {
             j++;
         }
     });
-
 }
 
 //Riempi la datatable report con le email non ancora lette
@@ -40,8 +39,9 @@ for (var i = 0; i < unreadEmail.length; i++) {
 
     var reportTable = $('#report').DataTable();
 
-    reportTable.row.add([paziente[1], emailAddress[1], info[1], '<span class="label label-success">Nuova</span>', '<button type="button" class="btn legitRipple" id="' + unreadEmail[i] + '" data-toggle="modal" data-target="#modal_emailInfo" onclick=setModalContent(this.id)><i class="icon-enlarge7 position-left"></i> Visualizza</button>', '']).draw();
+    var id_label = getIDsenzaCaratteriSpeciali(unreadEmail[i])
 
+    reportTable.row.add([paziente[1], emailAddress[1], info[1], '<span id="' + id_label + '" class="label label-success">Nuova</span>', '<button type="button" class="btn legitRipple" id="' + unreadEmail[i] + '" data-toggle="modal" data-target="#modal_emailInfo" onclick=setModalContent(this.id)><i class="icon-enlarge7 position-left"></i> Visualizza</button>', '']).draw();
 
 }
 
@@ -64,6 +64,7 @@ for (var i = 0; i < readEmail.length; i++) {
 
 
 function setModalContent(path) {
+    console.log(path);
     var emailInfo = fs.readFileSync(path + 'emailInfo.txt', 'utf8');
     var paziente = emailInfo.match("FROM:(.*) <");
     var intestazione = emailInfo.match("SUBJECT:(.*);");
@@ -85,4 +86,20 @@ function setModalContent(path) {
     $("#image1").attr("src", path + imageArray[0]);
     $("#image2").attr("src", path + imageArray[1]);
 
+    // Segna report come letto
+    fs.writeFile(path + "read.txt", "AT Software", function (err) {
+        if (err) {
+            return console.log(err);
+        }
+    });
+
+    // Cambia a runtime il label della tabella
+    $("#" + getIDsenzaCaratteriSpeciali(path))
+        .removeClass('label-success')
+        .addClass('label-default')
+        .text('LETTA');
+}
+
+function getIDsenzaCaratteriSpeciali(id_con_caratteri_speciali) {
+    return id_con_caratteri_speciali.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
 }
