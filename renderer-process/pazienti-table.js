@@ -34,6 +34,43 @@ function setModalContent(path) {
     var codiceFiscale = pazienteInfo.match("CodiceFiscale:(.*);");
     var indirizzoEmail = pazienteInfo.match("IndirizzoEmail:(.*);");
 
+    var email = path.match('./anagrafiche/(.*)');
+    var emailPath = './email/' + email[1];
+    var emailDir = new Array();
+    var analysis = new Array();
+
+    var i = 0;
+    var z = 0;
+
+    //Memorizza i percorsi di tutte le mail ricevute dall'indirizzo corrente, nell'array emailDir
+    fs.readdirSync(emailPath).forEach(file => {
+    // Ignora i file spazzatura tipici di MacOS (.DS_Store)
+    if (file.charAt(0) != '.') {
+        emailDir[i] = emailPath + file + "/";
+        i++;
+    }
+});
+
+    for(var j = 0; j < emailDir.length; j++){
+    
+            var emailInfo = fs.readFileSync(emailDir[j] + 'emailInfo.txt', 'utf8');
+            var date = emailInfo.match(/\d{2}([\/.-])\d{2}\1\d{4}/g);
+            var aStar = emailInfo.match('[*]: (.*)\n');
+            analysis[z] = new Array();
+            analysis[z][0] = date[0];
+            analysis[z][1] = Number(aStar[1]);
+            z++;
+}
+    analysis.sort(sortFunction);
+
+    var xArray = [];
+    var yArray = [];
+    
+    $.each(analysis, function(index, value) {
+        xArray.push(value[0]);
+        yArray.push(value[1]);
+    });
+    yArray.unshift('data');
     $("#modal_title").text(intestazione[1]);
     $('#nomeCognomeModalPaziente').text(intestazione[1]);
     $('#dataNascitaModalPaziente').text(dataDiNascita[1]);
@@ -53,26 +90,25 @@ function setModalContent(path) {
             pattern: ['#F4511E']
         },
         data: {
-            x: 'x',
-            //xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
-            columns: [
-                ['x', '2013-01-01', '2013-01-02', '2013-01-03', '2013-01-04', '2013-01-05', '2013-01-06'],
-                ['A*', 30, 200, 100, 400, 150, 250],
-            ],
-            type: 'spline'
-        },
+            columns: [yArray]
+          },
+          axis:{
+            x:{
+              label: 'Tempo',
+              type: 'category',
+              categories: xArray
+            },
+            y:{
+                label:'A*'
+            }
+          },
         grid: {
             y: {
                 show: true
             }
         },
-        axis: {
-            x: {
-                type: 'timeseries',
-                tick: {
-                    format: '%Y-%m-%d'
-                }
-            }
+        legend: {
+            show: false
         }
     });
 
@@ -81,4 +117,13 @@ function setModalContent(path) {
     setTimeout(function () {
         line_chart.resize();
     }, 170);
+}
+
+function sortFunction(a, b) {
+    if (a[0] === b[0]) {
+        return 0;
+    }
+    else {
+        return (a[0] < b[0]) ? -1 : 1;
+    }
 }

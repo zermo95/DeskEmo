@@ -1,0 +1,16 @@
+FROM:TOMMASO MASSARO <t.massaro7@studenti.uniba.it>;
+SUBJECT:Analisi Emoglobina - Tommaso Massaro;
+
+BODY:Analisi del giorno 30-10-2017
+
+Tommaso Massaro
+25/10/1993
+Maschio
+Codice Fiscale: MSSTMS93R25A225O
+A*: -3.24
+Hb: Hb
+Email Personale: tommy.931@live.it
+
+
+Inviato tramite Hb Meter Android App
+;
