@@ -50,7 +50,7 @@ function setModalContent(path) {
             height: 400
         },
         color: {
-            pattern: ['#4CAF50', '#F4511E', '#1E88E5']
+            pattern: ['#F4511E']
         },
         data: {
             x: 'x',
@@ -75,7 +75,6 @@ function setModalContent(path) {
             }
         }
     });
-
 
     // Grandissima zozzeria per ridimensionare
     // il grafico in base alla grandezza della modal
