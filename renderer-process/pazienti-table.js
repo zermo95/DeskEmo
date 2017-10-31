@@ -90,7 +90,10 @@ function setModalContent(path) {
             pattern: ['#F4511E']
         },
         data: {
-            columns: [yArray]
+            columns: [yArray],
+            names: {
+                data: 'A*'
+            }
           },
           axis:{
             x:{

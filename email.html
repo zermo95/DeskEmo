@@ -9,18 +9,17 @@
             <div class="panel-body">
 
 
-                <script type="text/javascript">
-                    var jsonString = '';
-                    $.getJSON("info.json", function (data) {
-                        $.each(data, function (index, value) {
-                            jsonString += "," + value;
-                        });
-                        var split = jsonString.split(",");
-                        $("#nomecognome").val(split[1]);
-                        $("#email").val(split[2]);
-
-                    });
-                </script>
+        <!-- Decriptazione del file json e riempimento del form --> 
+        <script>
+            
+              var encryptedJson = fs.readFileSync('files/info.json', 'utf8');
+          
+              var algorithm = 'aes-256-ctr';
+              var password = 'd6F3Efeq';
+              var json = JSON.parse(decrypt(encryptedJson,algorithm,password));
+              $('#nomecognome').val(json['nomeCognome']);
+              $('#email').val(json['email']);
+              </script>
 
                 <form name="data" class="form-horizontal form-validate-jquery" action="index.html" onsubmit="createJson(data.basic.value,data.email.value,data.password.value)"
                     data-toggle="validator">
@@ -97,7 +96,6 @@
     </div>
     <!-- /content area -->
 
-
     <script>
         function createJson(nomeCognome, email, password) {
             var info = {
@@ -106,14 +104,18 @@
                 "password": password
             };
             var json = JSON.stringify(info);
+            var algorithm = 'aes-256-ctr';
+            var password = 'd6F3Efeq';
+
+            var encryptedJson = encrypt(json,algorithm,password);
+            var __dirname= 'files';
             var fs = require('fs');
-            fs.writeFile("info.json", json);
+            fs.writeFile(__dirname + "/info.json", encryptedJson);
         }
     </script>
 
     <script>
         $(document).ready(function () {
-
             $.getScript('assets/js/plugins/forms/validation/validate.min.js');
             $.getScript('assets/js/plugins/forms/selects/bootstrap_multiselect.js');
             $.getScript('assets/js/plugins/forms/inputs/touchspin.min.js');
@@ -121,14 +123,12 @@
             $.getScript('assets/js/plugins/forms/styling/switch.min.js');
             $.getScript('assets/js/plugins/forms/styling/switchery.min.js');
             $.getScript('assets/js/plugins/forms/styling/uniform.min.js');
-
             //$.getScript('assets/js/core/app.js');
             $.getScript('assets/js/pages/form_validation.js');
-
             $.getScript('assets/js/plugins/ui/ripple.min.js');
+            $.getScript('encrypt-process/encrypt.js');
             //$.getScript('');
         })
     </script>
-
 
 </template>

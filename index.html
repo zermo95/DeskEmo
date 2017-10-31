@@ -44,6 +44,8 @@
     <script type="text/javascript" src="assets/js/plugins/visualization/c3/c3.min.js"></script>
     <!-- /script visualizzazione grafici -->
 
+    <script type="text/javascript" src="encrypt-process/encrypt.js"></script>
+    
 
     <!-- Insert this line after script imports -->
     <script>
@@ -84,9 +86,11 @@
             </ul>
         </div>
 
+    
+
         <div class="navbar-collapse collapse" id="navbar-mobile">
             <div class="navbar-right">
-                <p class="navbar-text">Buongiorno, Dr. Rossi!</p>
+                <p class="navbar-text" id="nomeCognomeMedico"></p>
                 <p class="navbar-text">
                     <span class="label bg-success">Online</span>
                 </p>
@@ -94,7 +98,7 @@
         </div>
     </div>
     <!-- /main navbar -->
-
+ 
 
     <!-- Page container -->
     <div class="page-container">
@@ -113,8 +117,8 @@
                                 <a href="#">
                                     <img src="assets/images/doctor-placeholder-male.jpg" class="img-circle img-responsive" alt="">
                                 </a>
-                                <h6>Dr. Mario Rossi</h6>
-                                <span class="text-size-small">Altamura, BA</span>
+                                <h6 id="nomeCognomeMenu"></h6>
+                               <!-- <span class="text-size-small">Altamura, BA</span> -->
                             </div>
 
                             <div class="sidebar-user-material-menu">
@@ -144,7 +148,17 @@
                     </div>
                     <!-- /user menu -->
 
+   <!-- Decriptazione del file json e riempimento campo nome e cognome medico --> 
+   <script>
+    const fs = require('fs');
+    var encryptedJson = fs.readFileSync('files/info.json', 'utf8');
 
+    var algorithm = 'aes-256-ctr';
+    var password = 'd6F3Efeq';
+    var json = JSON.parse(decrypt(encryptedJson,algorithm,password));
+    $('p#nomeCognomeMedico').text("Salve, Dr. " + json['nomeCognome'] +"!");
+    $('#nomeCognomeMenu').text("Dr. " + json['nomeCognome']);
+    </script>
                     <!-- Main navigation -->
                     <div class="sidebar-category sidebar-category-visible">
                         <div class="category-content no-padding">
@@ -235,6 +249,8 @@
         // All'avvio carica di default la sezione Report
         $(document).ready(function () {
             caricaSezione('report');
+           // $.getScript('encrypt-process/encrypt.js');
+
         });
     </script>
 

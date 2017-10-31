@@ -24,7 +24,8 @@ function createWindow() {
 
     //Check if is the first time
     fs = require('fs');
-    fs.stat('info.json', function (err, stat) {
+
+    fs.stat('files/info.json', function (err, stat) {
         if (err == null) {
             // file exists and load the index.html of the app.
             win.loadURL(url.format({
