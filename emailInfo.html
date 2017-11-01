@@ -10,7 +10,7 @@
             </div>
         </div>
     </div>
-    <!-- /page header -->    
+    <!-- /page header -->
 
     <!-- Content area -->
     <div class="content">
@@ -20,22 +20,7 @@
 
             <div class="panel-body">
 
-        <!-- Decriptazione del file json e riempimento del form --> 
-        <script>
-            
-              var encryptedJson = fs.readFileSync('files/info.json', 'utf8');
-          
-              var algorithm = 'aes-256-ctr';
-              var password = 'd6F3Efeq';
-              var json = JSON.parse(decrypt(encryptedJson,algorithm,password));
-              $('#nomecognome').val(json['nomeCognome']);
-              $('#email').val(json['email']);
-              $("#password").val("**********");
-              </script>
-          
- 
-
-<!--
+                <!--
                 <script type="text/javascript">
                     var jsonString = '';
                     $.getJSON("info.json", function (data) {
@@ -115,22 +100,33 @@
 
     <!-- /content area -->
 
- 
+
     <script>
         $(document).ready(function () {
-            $.getScript('assets/js/plugins/forms/validation/validate.min.js');
-            $.getScript('assets/js/plugins/forms/selects/bootstrap_multiselect.js');
-            $.getScript('assets/js/plugins/forms/inputs/touchspin.min.js');
-            $.getScript('assets/js/plugins/forms/selects/select2.min.js');
-            $.getScript('assets/js/plugins/forms/styling/switch.min.js');
-            $.getScript('assets/js/plugins/forms/styling/switchery.min.js');
-            $.getScript('assets/js/plugins/forms/styling/uniform.min.js');
+            //$.getScript('assets/js/plugins/forms/validation/validate.min.js');
+            //$.getScript('assets/js/plugins/forms/selects/bootstrap_multiselect.js');
+            //$.getScript('assets/js/plugins/forms/inputs/touchspin.min.js');
+            //$.getScript('assets/js/plugins/forms/selects/select2.min.js');
+            //$.getScript('assets/js/plugins/forms/styling/switch.min.js');
+            //$.getScript('assets/js/plugins/forms/styling/switchery.min.js');
+            //$.getScript('assets/js/plugins/forms/styling/uniform.min.js');
 
             //$.getScript('assets/js/core/app.js');
             $.getScript('assets/js/pages/form_validation.js');
 
-            $.getScript('assets/js/plugins/ui/ripple.min.js');
-            $.getScript('encrypt-process/encrypt.js');
+            //$.getScript('assets/js/plugins/ui/ripple.min.js');
+            //$.getScript('encrypt-process/encrypt.js');
+
+            /*Decriptazione del file json e riempimento del form*/
+            var encryptedJson = fs.readFileSync('files/info.json', 'utf8');
+
+            var algorithm = 'aes-256-ctr';
+            var password = 'd6F3Efeq';
+            var json = JSON.parse(decrypt(encryptedJson, algorithm, password));
+            $('#nomecognome').val(json['nomeCognome']);
+            $('#email').val(json['email']);
+            $("#password").val("**********");
+
         })
     </script>
 

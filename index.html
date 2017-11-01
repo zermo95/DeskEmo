@@ -44,7 +44,23 @@
     <script type="text/javascript" src="assets/js/plugins/visualization/c3/c3.min.js"></script>
     <!-- /script visualizzazione grafici -->
 
+    <!-- Script con funzioni per criptare -->
     <script type="text/javascript" src="encrypt-process/encrypt.js"></script>
+    <!-- /script con funzioni per criptare -->
+
+    <!-- Script input form ------------>
+    <script type="text/javascript" src="assets/js/plugins/forms/validation/validate.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/forms/inputs/touchspin.min.js"></script>
+    <!-- Lo script select2.min.js viene gia caricato prima quindi evito di ricaricarlo -->
+    <!-- Stessa cosa per encrypt.js -->
+    <script type="text/javascript" src="assets/js/plugins/forms/styling/switch.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/forms/styling/switchery.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/forms/styling/uniform.min.js"></script>
+    <script type="text/javascript" src="encrypt-process/encrypt.js"></script>
+    <script type="text/javascript" src="encrypt-process/encrypt.js"></script>
+    <!-- /script input form ------------>
+
     
 
     <!-- Insert this line after script imports -->
@@ -86,7 +102,7 @@
             </ul>
         </div>
 
-    
+
 
         <div class="navbar-collapse collapse" id="navbar-mobile">
             <div class="navbar-right">
@@ -98,7 +114,7 @@
         </div>
     </div>
     <!-- /main navbar -->
- 
+
 
     <!-- Page container -->
     <div class="page-container">
@@ -118,7 +134,7 @@
                                     <img src="assets/images/doctor-placeholder-male.jpg" class="img-circle img-responsive" alt="">
                                 </a>
                                 <h6 id="nomeCognomeMenu"></h6>
-                               <!-- <span class="text-size-small">Altamura, BA</span> -->
+                                <!-- <span class="text-size-small">Altamura, BA</span> -->
                             </div>
 
                             <div class="sidebar-user-material-menu">
@@ -148,17 +164,17 @@
                     </div>
                     <!-- /user menu -->
 
-   <!-- Decriptazione del file json e riempimento campo nome e cognome medico --> 
-   <script>
-    const fs = require('fs');
-    var encryptedJson = fs.readFileSync('files/info.json', 'utf8');
+                    <!-- Decriptazione del file json e riempimento campo nome e cognome medico -->
+                    <script>
+                        const fs = require('fs');
+                        var encryptedJson = fs.readFileSync('files/info.json', 'utf8');
 
-    var algorithm = 'aes-256-ctr';
-    var password = 'd6F3Efeq';
-    var json = JSON.parse(decrypt(encryptedJson,algorithm,password));
-    $('p#nomeCognomeMedico').text("Salve, Dr. " + json['nomeCognome'] +"!");
-    $('#nomeCognomeMenu').text("Dr. " + json['nomeCognome']);
-    </script>
+                        var algorithm = 'aes-256-ctr';
+                        var password = 'd6F3Efeq';
+                        var json = JSON.parse(decrypt(encryptedJson, algorithm, password));
+                        $('p#nomeCognomeMedico').text("Salve, Dr. " + json['nomeCognome'] + "!");
+                        $('#nomeCognomeMenu').text("Dr. " + json['nomeCognome']);
+                    </script>
                     <!-- Main navigation -->
                     <div class="sidebar-category sidebar-category-visible">
                         <div class="category-content no-padding">
@@ -176,7 +192,7 @@
                                         <i class="icon-folder-open2"></i>
                                         <span>Report</span>
                                     </a>
-                                </li>                                
+                                </li>
                                 <li id="pazienti-menu">
                                     <a onclick="caricaSezione('pazienti')">
                                         <i class="icon-people"></i>
@@ -249,7 +265,7 @@
         // All'avvio carica di default la sezione Report
         $(document).ready(function () {
             caricaSezione('report');
-           // $.getScript('encrypt-process/encrypt.js');
+            // $.getScript('encrypt-process/encrypt.js');
 
         });
     </script>
