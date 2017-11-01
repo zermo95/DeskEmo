@@ -116,7 +116,7 @@
             //$.getScript('encrypt-process/encrypt.js');
             //$.getScript('');
 
-            /*Decriptazione del file json e riempimento del form*/
+            //Decriptazione del file json e riempimento del form
             var encryptedJson = fs.readFileSync('files/info.json', 'utf8');
 
             var algorithm = 'aes-256-ctr';
@@ -124,6 +124,8 @@
             var json = JSON.parse(decrypt(encryptedJson, algorithm, password));
             $('#nomecognome').val(json['nomeCognome']);
             $('#email').val(json['email']);
+
         })
     </script>
+
 </template>

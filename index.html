@@ -26,44 +26,10 @@
     </script>
 
     <!-- normal script imports etc  -->
-    <!-- Core JS files -->
-    <script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/js/core/libraries/bootstrap.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
-    <script type="text/javascript" src="assets/js/core/app.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/ui/ripple.min.js"></script>
-    <!-- /core JS files -->
-
-    <!-- Script gestione tabelle -->
-    <script type="text/javascript" src="assets/js/plugins/tables/datatables/datatables.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/forms/selects/select2.min.js"></script>
-    <!-- /script gestione tabelle -->
-
-    <!-- Script visualizzazione grafici -->
-    <script type="text/javascript" src="assets/js/plugins/visualization/d3/d3.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/visualization/c3/c3.min.js"></script>
-    <!-- /script visualizzazione grafici -->
-
-    <!-- Script con funzioni per criptare -->
-    <script type="text/javascript" src="encrypt-process/encrypt.js"></script>
-    <!-- /script con funzioni per criptare -->
-
-    <!-- Script input form ------------>
-    <script type="text/javascript" src="assets/js/plugins/forms/validation/validate.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/forms/inputs/touchspin.min.js"></script>
-    <!-- Lo script select2.min.js viene gia caricato prima quindi evito di ricaricarlo -->
-    <!-- Stessa cosa per encrypt.js -->
-    <script type="text/javascript" src="assets/js/plugins/forms/styling/switch.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/forms/styling/switchery.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/forms/styling/uniform.min.js"></script>
-    <script type="text/javascript" src="encrypt-process/encrypt.js"></script>
-    <script type="text/javascript" src="encrypt-process/encrypt.js"></script>
-    <!-- /script input form ------------>
-
-    
-
+    <link rel="import" href="./script-import.html">
     <!-- Insert this line after script imports -->
+
+
     <script>
         if (window.module) module = window.module;
     </script>
@@ -266,7 +232,6 @@
         $(document).ready(function () {
             caricaSezione('report');
             // $.getScript('encrypt-process/encrypt.js');
-
         });
     </script>
 
