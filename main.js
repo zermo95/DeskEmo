@@ -4,9 +4,34 @@ const {
 } = require('electron')
 const path = require('path')
 const url = require('url')
+const separator = setSeparator();
+var fs = require('fs');
 
-const application_support_folder = app.getPath('appData') + '/' + app.getName()
-console.log(application_support_folder)
+/**
+ * Imposta il separatore delle directory in base al sistema operativo
+ * WINDOWS = \
+ * MAC,LINUX = /
+ */
+function setSeparator() {
+    if (process.platform === 'win32')
+        return '\\'
+    return '/'
+}
+
+/**
+ * Se non esiste la directory dell'application support --> creala
+ * In questa directory verranno salvati tutti i file necessari
+ * al corretto funzionamento dell'applicazione
+ * 
+ * Su Mac la directory è ~/Library/Application Support
+ * Su Windows è %APPDATA%
+ * Su Linux è $XDG_CONFIG_HOME oppure ~/.config
+ */
+function createApplicationSupportFolder() {
+    if (!fs.existsSync(getApplicationSupportFolderPath())) {
+        fs.mkdirSync(getApplicationSupportFolderPath());
+    }
+}
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -14,6 +39,9 @@ let win
 //let firstTimeWindows;
 
 function createWindow() {
+
+    createApplicationSupportFolder()
+
     // Create the browser window.
     win = new BrowserWindow({
         /*webPreferences: {
@@ -23,11 +51,7 @@ function createWindow() {
         height: 700
     })
 
-
-
     //Check if is the first time
-    fs = require('fs');
-
     fs.stat('files/info.json', function (err, stat) {
         if (err == null) {
             // file exists and load the index.html of the app.
@@ -92,7 +116,6 @@ function firstTimeWindows() {
 
 }
 
-
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -118,4 +141,25 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
-require('./main-process/mail-listener');
+/**
+ * Ritorna il percorso della directory speciale
+ * In cui sono collocati i file di supporto all'applicazione
+ * 
+ * Esempio di stringa ritornata:
+ * /Users/zermo/Library/Application Support/deskemoalpha/
+ */
+function getApplicationSupportFolderPath() {
+    return app.getPath('appData') + separator + app.getName() + separator
+}
+
+/**
+ * Esporta la funzione così da poter essere utilizzata in altri script
+ * quando viene chiamata con il require(main.js)
+ */ 
+module.exports = {
+    getApplicationSupportFolderPath,
+    separator
+}
+
+// Avvia processo client mail
+require('./main-process/mail-listener')

@@ -1,5 +1,6 @@
-const folder = './anagrafiche/';
-const fs = require('fs');
+const mainProcess = require('electron').remote.require('./main.js')
+var folder = mainProcess.getApplicationSupportFolderPath() + 'anagrafiche/'
+var fs = require('fs');
 var addressDir = new Array();
 var i = 0;
 //Memorizza i percorsi delle directory contenute nella directory anagrafiche, nell'array addressDir
@@ -35,7 +36,7 @@ function setModalContent(path) {
     var indirizzoEmail = pazienteInfo.match("IndirizzoEmail:(.*);");
 
     var email = path.match('./anagrafiche/(.*)');
-    var emailPath = './email/' + email[1];
+    var emailPath = mainProcess.getApplicationSupportFolderPath() + 'email/' + email[1];
     var emailDir = new Array();
     var analysis = new Array();
 
@@ -44,29 +45,28 @@ function setModalContent(path) {
 
     //Memorizza i percorsi di tutte le mail ricevute dall'indirizzo corrente, nell'array emailDir
     fs.readdirSync(emailPath).forEach(file => {
-    // Ignora i file spazzatura tipici di MacOS (.DS_Store)
-    if (file.charAt(0) != '.') {
-        emailDir[i] = emailPath + file + "/";
-        i++;
-    }
-});
+        // Ignora i file spazzatura tipici di MacOS (.DS_Store)
+        if (file.charAt(0) != '.') {
+            emailDir[i] = emailPath + file + "/";
+            i++;
+        }
+    });
 
-    for(var j = 0; j < emailDir.length; j++){
-    
-            var emailInfo = fs.readFileSync(emailDir[j] + 'emailInfo.txt', 'utf8');
-            var date = emailInfo.match(/\d{2}([\/.-])\d{2}\1\d{4}/g);
-            var aStar = emailInfo.match('[*]: (.*)\n');
-            analysis[z] = new Array();
-            analysis[z][0] = date[0];
-            analysis[z][1] = Number(aStar[1]);
-            z++;
-}
+    for (var j = 0; j < emailDir.length; j++) {
+        var emailInfo = fs.readFileSync(emailDir[j] + 'emailInfo.txt', 'utf8');
+        var date = emailInfo.match(/\d{2}([\/.-])\d{2}\1\d{4}/g);
+        var aStar = emailInfo.match('[*]: (.*)\n');
+        analysis[z] = new Array();
+        analysis[z][0] = date[0];
+        analysis[z][1] = Number(aStar[1]);
+        z++;
+    }
     analysis.sort(sortFunction);
 
     var xArray = [];
     var yArray = [];
-    
-    $.each(analysis, function(index, value) {
+
+    $.each(analysis, function (index, value) {
         xArray.push(value[0]);
         yArray.push(value[1]);
     });
@@ -94,17 +94,17 @@ function setModalContent(path) {
             names: {
                 data: 'A*'
             }
-          },
-          axis:{
-            x:{
-              label: 'Tempo',
-              type: 'category',
-              categories: xArray
+        },
+        axis: {
+            x: {
+                label: 'Tempo',
+                type: 'category',
+                categories: xArray
             },
-            y:{
-                label:'A*'
+            y: {
+                label: 'A*'
             }
-          },
+        },
         grid: {
             y: {
                 show: true
@@ -125,8 +125,7 @@ function setModalContent(path) {
 function sortFunction(a, b) {
     if (a[0] === b[0]) {
         return 0;
-    }
-    else {
+    } else {
         return (a[0] < b[0]) ? -1 : 1;
     }
 }

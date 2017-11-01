@@ -1,5 +1,7 @@
-const folder = './email/';
-const fs = require('fs');
+const mainProcess = require('electron').remote.require('./main.js')
+var folder = mainProcess.getApplicationSupportFolderPath() + 'email/'
+var fs = require('fs');
+console.log(folder)
 var addressDir = new Array();
 var readEmail = new Array();
 var unreadEmail = new Array();
@@ -10,6 +12,7 @@ fs.readdirSync(folder).forEach(file => {
     // Ignora i file spazzatura tipici di MacOS (.DS_Store)
     if (file.charAt(0) != '.') {
         addressDir[i] = folder + file + "/";
+        //console.log(addressDir[i])
         i++;
     }
 });
@@ -20,18 +23,24 @@ var k = 0;
 for (z = 0; z < addressDir.length; z++) {
     var newFolder = addressDir[z];
     fs.readdirSync(newFolder).forEach(file => {
-        if (fs.existsSync(newFolder + file + "/read.txt")) {
-            readEmail[k] = newFolder + file + "/";
-            k++;
-        } else {
-            unreadEmail[j] = newFolder + file + "/";
-            j++;
+        // Ignora i file spazzatura tipici di MacOS (.DS_Store)
+        if (file.charAt(0) != '.') {
+            if (fs.existsSync(newFolder + file + "/read.txt")) {
+                readEmail[k] = newFolder + file + "/";
+                //console.log(readEmail[k])
+                k++;
+            } else {
+                unreadEmail[j] = newFolder + file + "/";
+                //console.log(unreadEmail[j])
+                j++;
+            }
         }
     });
 }
 
 //Riempi la datatable report con le email non ancora lette
 for (var i = 0; i < unreadEmail.length; i++) {
+    console.log(unreadEmail[i])
     var emailInfo = fs.readFileSync(unreadEmail[i] + 'emailInfo.txt', 'utf8');
     var paziente = emailInfo.match("FROM:(.*) <");
     var emailAddress = emailInfo.match("<(.*)>");
@@ -40,6 +49,7 @@ for (var i = 0; i < unreadEmail.length; i++) {
     var reportTable = $('#report').DataTable();
 
     var id_label = getIDsenzaCaratteriSpeciali(unreadEmail[i])
+    console.log(id_label)
 
     reportTable.row.add([paziente[1], emailAddress[1], info[1], '<span id="' + id_label + '" class="label label-success">Nuova</span>', '<button type="button" class="btn legitRipple" id="' + unreadEmail[i] + '" data-toggle="modal" data-target="#modal_emailInfo" onclick=setModalContent(this.id)><i class="icon-enlarge7 position-left"></i> Visualizza</button>', '']).draw();
 
@@ -64,7 +74,6 @@ for (var i = 0; i < readEmail.length; i++) {
 
 
 function setModalContent(path) {
-    console.log(path);
     var emailInfo = fs.readFileSync(path + 'emailInfo.txt', 'utf8');
     var paziente = emailInfo.match("FROM:(.*) <");
     var intestazione = emailInfo.match("SUBJECT:(.*);");
@@ -74,7 +83,7 @@ function setModalContent(path) {
     var imageArray = new Array();
     var i = 0;
     fs.readdirSync(path).forEach(file => {
-        if (file != "read.txt" && file != "emailInfo.txt") {
+        if (file != "read.txt" && file != "emailInfo.txt" && file.charAt(0) != '.') {
             imageArray[i] = file;
             i++;
         }
@@ -101,5 +110,5 @@ function setModalContent(path) {
 }
 
 function getIDsenzaCaratteriSpeciali(id_con_caratteri_speciali) {
-    return id_con_caratteri_speciali.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+    return id_con_caratteri_speciali.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\s]/gi, '');
 }

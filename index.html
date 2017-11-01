@@ -27,9 +27,8 @@
 
     <!-- normal script imports etc  -->
     <link rel="import" href="./script-import.html">
+
     <!-- Insert this line after script imports -->
-
-
     <script>
         if (window.module) module = window.module;
     </script>
@@ -67,8 +66,6 @@
                 </li>
             </ul>
         </div>
-
-
 
         <div class="navbar-collapse collapse" id="navbar-mobile">
             <div class="navbar-right">
@@ -132,7 +129,7 @@
 
                     <!-- Decriptazione del file json e riempimento campo nome e cognome medico -->
                     <script>
-                        const fs = require('fs');
+                        var fs = require('fs');
                         var encryptedJson = fs.readFileSync('files/info.json', 'utf8');
 
                         var algorithm = 'aes-256-ctr';
