@@ -36,7 +36,7 @@ function setModalContent(path) {
     var codiceFiscale = pazienteInfo.match("CodiceFiscale:(.*);");
     var indirizzoEmail = pazienteInfo.match("IndirizzoEmail:(.*);");
 
-    var email = path.match('./anagrafiche/(.*)');
+    var email = path.match(separator + 'anagrafiche' + separator + '(.*)');
     var emailPath = mainProcess.getApplicationSupportFolderPath() + 'email' + separator + email[1];
     var emailDir = new Array();
     var analysis = new Array();
