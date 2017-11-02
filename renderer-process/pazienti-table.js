@@ -1,5 +1,6 @@
 const mainProcess = require('electron').remote.require('./main.js')
-var folder = mainProcess.getApplicationSupportFolderPath() + 'anagrafiche/'
+const separator = mainProcess.separator;
+var folder = mainProcess.getApplicationSupportFolderPath() + 'anagrafiche' + separator
 var fs = require('fs');
 var addressDir = new Array();
 var i = 0;
@@ -7,7 +8,7 @@ var i = 0;
 fs.readdirSync(folder).forEach(file => {
     // Ignora i file spazzatura tipici di MacOS (.DS_Store)
     if (file.charAt(0) != '.') {
-        addressDir[i] = folder + file + "/";
+        addressDir[i] = folder + file + separator;
         i++;
     }
 });
@@ -36,7 +37,7 @@ function setModalContent(path) {
     var indirizzoEmail = pazienteInfo.match("IndirizzoEmail:(.*);");
 
     var email = path.match('./anagrafiche/(.*)');
-    var emailPath = mainProcess.getApplicationSupportFolderPath() + 'email/' + email[1];
+    var emailPath = mainProcess.getApplicationSupportFolderPath() + 'email' + separator + email[1];
     var emailDir = new Array();
     var analysis = new Array();
 
@@ -47,7 +48,7 @@ function setModalContent(path) {
     fs.readdirSync(emailPath).forEach(file => {
         // Ignora i file spazzatura tipici di MacOS (.DS_Store)
         if (file.charAt(0) != '.') {
-            emailDir[i] = emailPath + file + "/";
+            emailDir[i] = emailPath + file + separator;
             i++;
         }
     });

@@ -1,5 +1,6 @@
 const mainProcess = require('electron').remote.require('./main.js')
-var folder = mainProcess.getApplicationSupportFolderPath() + 'email/'
+const separator = mainProcess.separator;
+var folder = mainProcess.getApplicationSupportFolderPath() + 'email' + separator;
 var fs = require('fs');
 console.log(folder)
 var addressDir = new Array();
@@ -11,7 +12,7 @@ var z = 0;
 fs.readdirSync(folder).forEach(file => {
     // Ignora i file spazzatura tipici di MacOS (.DS_Store)
     if (file.charAt(0) != '.') {
-        addressDir[i] = folder + file + "/";
+        addressDir[i] = folder + file + separator;
         //console.log(addressDir[i])
         i++;
     }
@@ -25,12 +26,12 @@ for (z = 0; z < addressDir.length; z++) {
     fs.readdirSync(newFolder).forEach(file => {
         // Ignora i file spazzatura tipici di MacOS (.DS_Store)
         if (file.charAt(0) != '.') {
-            if (fs.existsSync(newFolder + file + "/read.txt")) {
-                readEmail[k] = newFolder + file + "/";
+            if (fs.existsSync(newFolder + file + separator + "read.txt")) {
+                readEmail[k] = newFolder + file + separator;
                 //console.log(readEmail[k])
                 k++;
             } else {
-                unreadEmail[j] = newFolder + file + "/";
+                unreadEmail[j] = newFolder + file + separator;
                 //console.log(unreadEmail[j])
                 j++;
             }
