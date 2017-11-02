@@ -1,4 +1,6 @@
 var mainProcess = require('../main.js')
+const separator =  mainProcess.separator;
+
 var Imap = require('imap'),
     inspect = require('util').inspect;
 
@@ -57,9 +59,9 @@ imap.once('ready', function () {
 
                             simpleParser(buffer, (err, mail) => {
                                 var emailAddress = mail.from.text.match("<(.*)>");
-                                var emailAddressDir = mainProcess.getApplicationSupportFolderPath() + 'email/' + emailAddress[1];
-                                var anagraficaDir = mainProcess.getApplicationSupportFolderPath() + 'anagrafiche/' + emailAddress[1];
-                                var emailDir = emailAddressDir + '/' + messageID[1];
+                                var emailAddressDir = mainProcess.getApplicationSupportFolderPath() + 'email' + separator + emailAddress[1];
+                                var anagraficaDir = mainProcess.getApplicationSupportFolderPath() + 'anagrafiche' + separator + emailAddress[1];
+                                var emailDir = emailAddressDir + separator + messageID[1];
 
                                 //Controlla esistenza cartella indirizzo email
                                 if (!fs.existsSync(emailAddressDir))
@@ -77,7 +79,7 @@ imap.once('ready', function () {
                                     var anagrafica = "NomeCognome:" + nomeCognome[1] + ";\n" + "Bday:" + bDay[1] + ";\n" + "CodiceFiscale:" + codiceFiscale[1] + ";\n" + "IndirizzoEmail:" + email[1] + ";";
 
                                     //Salvataggio dell'anagrafica nella directory corrispondente
-                                    fs.writeFile(anagraficaDir + '/anagrafica.txt', anagrafica, function (err) {
+                                    fs.writeFile(anagraficaDir + separator + 'anagrafica.txt', anagrafica, function (err) {
                                         if (err) {
                                             return console.log("Errore nel salvataggio dell'allegato" + err);
                                         }
@@ -98,7 +100,7 @@ imap.once('ready', function () {
                                         var find = ':';
                                         var re = new RegExp(find, 'g');
                                         filename = filename.replace(re, '_');
-                                        fs.writeFile(emailDir + '/' + filename, mail.attachments[i].content, function (err) {
+                                        fs.writeFile(emailDir + separator + filename, mail.attachments[i].content, function (err) {
                                             if (err) {
                                                 return console.log("Errore nel salvataggio dell'allegato" + err);
                                             }
@@ -106,7 +108,7 @@ imap.once('ready', function () {
                                         });
 
                                         //Salvataggio del corpo dell'email
-                                        fs.writeFile(emailDir + '/emailInfo.txt', mailInfo, function (err) {
+                                        fs.writeFile(emailDir + separator + 'emailInfo.txt', mailInfo, function (err) {
                                             if (err) {
                                                 return console.log("Errore nel salvataggio dell'allegato" + err);
                                             }
