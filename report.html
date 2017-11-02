@@ -32,11 +32,12 @@
             <table class="table datatable-basic" id="report">
                 <thead>
                     <tr>
+                        <th>ID_Mail_Nascosto</th>
                         <th>Paziente</th>
                         <th>Indirizzo e-mail</th>
                         <th>Informazioni</th>
                         <th>Stato</th>
-                        <th colspan="2">Azioni</th>
+                        <th>Azioni</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -91,6 +92,10 @@
             $.getScript('assets/js/pages/datatables_basic.js');
             $.getScript('renderer-process/report-table.js');
             //$.getScript('assets/js/plugins/ui/ripple.min.js');
+
+            setInterval(function () { //calls click event after a certain time
+                $.getScript('renderer-process/report-table.js');
+            }, 5000);
         })
     </script>
 </template>

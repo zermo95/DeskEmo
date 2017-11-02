@@ -50,7 +50,6 @@ for (var i = 0; i < unreadEmail.length; i++) {
     var reportTable = $('#report').DataTable();
 
     var id_label = getIDsenzaCaratteriSpeciali(unreadEmail[i])
-    console.log(id_label)
 
     reportTable.row.add([paziente[1], emailAddress[1], info[1], '<span id="' + id_label + '" class="label label-success">Nuova</span>', '<button type="button" class="btn legitRipple" id="' + unreadEmail[i] + '" data-toggle="modal" data-target="#modal_emailInfo" onclick=setModalContent(this.id)><i class="icon-enlarge7 position-left"></i> Visualizza</button>', '']).draw();
 
@@ -63,9 +62,23 @@ for (var i = 0; i < readEmail.length; i++) {
     var emailAddress = emailInfo.match("<(.*)>");
     var info = emailInfo.match("BODY:(.*)\n");
 
-    var reportTable = $('#report').DataTable();
+    var reportTable = $('#report').DataTable()
 
-    reportTable.row.add([paziente[1], emailAddress[1], info[1], '<span class="label label-default">Letta</span>', '<button type="button" class="btn legitRipple" id="' + readEmail[i] + '" data-toggle="modal" data-target="#modal_emailInfo" onclick=setModalContent(this.id)><i class="icon-enlarge7 position-left"></i> Visualizza</button>', '']).draw();
+    // Nascondo la prima colonna della tabella con gli ID
+    reportTable.column(0).visible(false)
+
+    // Creo l'ID della mail da inserire nella colonna nascosta con gli ID
+    var id_mail = 'mailid' + getIDsenzaCaratteriSpeciali(readEmail[i])
+
+    // Prendo tutti i valori della prima colonna con gli ID nascosti
+    var valori_colonna = reportTable.column(0).data()
+
+    // Se l'email è già visualizzata nella tabella, non aggiungere nessuna nuova riga
+    if ($.inArray(id_mail, valori_colonna) != -1) {
+        continue;
+    }
+
+    reportTable.row.add([id_mail, paziente[1], emailAddress[1], info[1], '<span class="label label-default">Letta</span>', '<button type="button" class="btn legitRipple" id="' + readEmail[i] + '" data-toggle="modal" data-target="#modal_emailInfo" onclick=setModalContent(this.id)><i class="icon-enlarge7 position-left"></i> Visualizza</button>', ]).draw();
 
     /* $('#report > tbody:last-child').append('<tr><td>' + paziente[1] + '</td><td>' + emailAddress[1] +
          '</td><td>' + info[1] +
