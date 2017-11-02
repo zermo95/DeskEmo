@@ -30,13 +30,14 @@ for (var i = 0; i < addressDir.length; i++) {
 
 //Copia dell'altra funzione in report-table (rivista per i pazienti)
 function setModalContent(path) {
+    
     var pazienteInfo = fs.readFileSync(path + 'anagrafica.txt', 'utf8');
     var intestazione = pazienteInfo.match("NomeCognome:(.*);");
     var dataDiNascita = pazienteInfo.match("Bday:(.*);");
     var codiceFiscale = pazienteInfo.match("CodiceFiscale:(.*);");
     var indirizzoEmail = pazienteInfo.match("IndirizzoEmail:(.*);");
-
-    var email = path.match(separator + 'anagrafiche' + separator + '(.*)');
+    
+    var email = path.match('anagrafiche(.*)');
     var emailPath = mainProcess.getApplicationSupportFolderPath() + 'email' + separator + email[1];
     var emailDir = new Array();
     var analysis = new Array();
