@@ -128,8 +128,11 @@
 
                     <!-- Decriptazione del file json e riempimento campo nome e cognome medico -->
                     <script>
+                         const mainProcess = require('electron').remote.require('./main.js')
+                         const separator = mainProcess.separator;
+                        var filesDir = mainProcess.getApplicationSupportFolderPath() + 'files' + separator
                         var fs = require('fs');
-                        var encryptedJson = fs.readFileSync('files/info.json', 'utf8');
+                        var encryptedJson = fs.readFileSync(filesDir + 'info.json', 'utf8');
 
                         var algorithm = 'aes-256-ctr';
                         var password = 'd6F3Efeq';

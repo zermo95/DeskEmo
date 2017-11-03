@@ -52,7 +52,8 @@ function createWindow() {
     })
 
     //Check if is the first time
-    fs.stat('files/info.json', function (err, stat) {
+    var filesDir = getApplicationSupportFolderPath() + 'files' + separator
+    fs.stat(filesDir + 'info.json', function (err, stat) {
         if (err == null) {
             // file exists and load the index.html of the app.
             win.loadURL(url.format({

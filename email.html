@@ -94,9 +94,17 @@
             var password = 'd6F3Efeq';
 
             var encryptedJson = encrypt(json, algorithm, password);
-            var __dirname = 'files';
+           // var __dirname = 'files';
+
+            const mainProcess = require('electron').remote.require('./main.js')
+            const separator = mainProcess.separator;
+            var __dirname = mainProcess.getApplicationSupportFolderPath() + 'files' + separator
             var fs = require('fs');
-            fs.writeFile(__dirname + "/info.json", encryptedJson);
+          //Crea la cartella files se non esiste
+        if (!fs.existsSync(__dirname)) {
+            fs.mkdirSync(__dirname);
+        }
+            fs.writeFile(__dirname + "info.json", encryptedJson);
         }
 
     </script>
@@ -117,7 +125,10 @@
             //$.getScript('');
 
             //Decriptazione del file json e riempimento del form
-            var encryptedJson = fs.readFileSync('files/info.json', 'utf8');
+            const mainProcess = require('electron').remote.require('./main.js')
+            const separator = mainProcess.separator;
+            var filesDir = mainProcess.getApplicationSupportFolderPath() + 'files' + separator
+            var encryptedJson = fs.readFileSync(filesDir+'info.json', 'utf8');
 
             var algorithm = 'aes-256-ctr';
             var password = 'd6F3Efeq';

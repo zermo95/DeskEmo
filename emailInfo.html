@@ -117,8 +117,11 @@
             //$.getScript('assets/js/plugins/ui/ripple.min.js');
             //$.getScript('encrypt-process/encrypt.js');
 
-            //Decriptazione del file json e riempimento del form 
-            var encryptedJson = fs.readFileSync('files/info.json', 'utf8');
+            //Decriptazione del file json e riempimento del form
+            const mainProcess = require('electron').remote.require('./main.js')
+            const separator = mainProcess.separator;
+            var filesDir = mainProcess.getApplicationSupportFolderPath() + 'files' + separator
+            var encryptedJson = fs.readFileSync(filesDir + 'info.json', 'utf8');
 
             var algorithm = 'aes-256-ctr';
             var password = 'd6F3Efeq';
