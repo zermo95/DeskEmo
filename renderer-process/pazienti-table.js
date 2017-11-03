@@ -1,22 +1,22 @@
 const mainProcess = require('electron').remote.require('./main.js')
 const separator = mainProcess.separator;
-var folder = mainProcess.getApplicationSupportFolderPath() + 'anagrafiche' + separator
-var fs = require('fs');
-var addressDir = new Array();
+var folderAnagrafiche = mainProcess.getApplicationSupportFolderPath() + 'anagrafiche' + separator
+var fileSystemAnagrafiche = require('fs');
+var addressDirAnagrafiche = new Array();
 var i = 0;
 //Memorizza i percorsi delle directory contenute nella directory anagrafiche, nell'array addressDir
-fs.readdirSync(folder).forEach(file => {
+fileSystemAnagrafiche.readdirSync(folderAnagrafiche).forEach(file => {
     // Ignora i file spazzatura tipici di MacOS (.DS_Store)
     if (file.charAt(0) != '.') {
-        addressDir[i] = folder + file + separator;
+        addressDirAnagrafiche[i] = folderAnagrafiche + file + separator;
         i++;
     }
 });
 
 
 //Riempi la datatable pazienti
-for (var i = 0; i < addressDir.length; i++) {
-    var anagrafica = fs.readFileSync(addressDir[i] + 'anagrafica.txt', 'utf8');
+for (var i = 0; i < addressDirAnagrafiche.length; i++) {
+    var anagrafica = fileSystemAnagrafiche.readFileSync(addressDirAnagrafiche[i] + 'anagrafica.txt', 'utf8');
     var nomeCognome = anagrafica.match('NomeCognome:(.*) ;');
     var bDay = anagrafica.match('Bday:(.*);');
     var codiceFiscale = anagrafica.match('CodiceFiscale:(.*);');
@@ -24,19 +24,19 @@ for (var i = 0; i < addressDir.length; i++) {
 
     var pazientiTable = $('#pazienti').DataTable();
 
-    pazientiTable.row.add([nomeCognome[1], codiceFiscale[1], bDay[1], email[1], '<button type="button" class="btn btn-info legitRipple" id="' + addressDir[i] + '" data-toggle="modal" data-target="#modal_pazientiInfo" onclick=setModalContent(this.id)><i class="icon-user position-left"></i> Visualizza</button>', '']).draw();
+    pazientiTable.row.add([nomeCognome[1], codiceFiscale[1], bDay[1], email[1], '<button type="button" class="btn btn-info legitRipple" id="' + addressDirAnagrafiche[i] + '" data-toggle="modal" data-target="#modal_pazientiInfo" onclick=setModalContentAnagrafiche(this.id)><i class="icon-user position-left"></i> Visualizza</button>', '']).draw();
 
 }
 
 //Copia dell'altra funzione in report-table (rivista per i pazienti)
-function setModalContent(path) {
-    
-    var pazienteInfo = fs.readFileSync(path + 'anagrafica.txt', 'utf8');
+function setModalContentAnagrafiche(path) {
+
+    var pazienteInfo = fileSystemAnagrafiche.readFileSync(path + 'anagrafica.txt', 'utf8');
     var intestazione = pazienteInfo.match("NomeCognome:(.*);");
     var dataDiNascita = pazienteInfo.match("Bday:(.*);");
     var codiceFiscale = pazienteInfo.match("CodiceFiscale:(.*);");
     var indirizzoEmail = pazienteInfo.match("IndirizzoEmail:(.*);");
-    
+
     var email = path.match('anagrafiche(.*)');
     var emailPath = mainProcess.getApplicationSupportFolderPath() + 'email' + separator + email[1];
     var emailDir = new Array();
@@ -46,7 +46,7 @@ function setModalContent(path) {
     var z = 0;
 
     //Memorizza i percorsi di tutte le mail ricevute dall'indirizzo corrente, nell'array emailDir
-    fs.readdirSync(emailPath).forEach(file => {
+    fileSystemAnagrafiche.readdirSync(emailPath).forEach(file => {
         // Ignora i file spazzatura tipici di MacOS (.DS_Store)
         if (file.charAt(0) != '.') {
             emailDir[i] = emailPath + file + separator;
@@ -55,7 +55,7 @@ function setModalContent(path) {
     });
 
     for (var j = 0; j < emailDir.length; j++) {
-        var emailInfo = fs.readFileSync(emailDir[j] + 'emailInfo.txt', 'utf8');
+        var emailInfo = fileSystemAnagrafiche.readFileSync(emailDir[j] + 'emailInfo.txt', 'utf8');
         var date = emailInfo.match(/\d{2}([\/.-])\d{2}\1\d{4}/g);
         var aStar = emailInfo.match('[*]: (.*)\n');
         analysis[z] = new Array();

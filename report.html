@@ -8,6 +8,10 @@
                     <span class="text-semibold">Report</span>
                 </h1>
             </div>
+            <div class="heading-elements" id="check-new-report" style="display:none">
+                <span class="heading-text">
+                    <i class="icon-spinner2 spinner position-left"></i> Verifica nuovi report in corso...</span>
+            </div>
         </div>
     </div>
     <!-- /page header -->
@@ -32,7 +36,7 @@
             <table class="table datatable-basic" id="report">
                 <thead>
                     <tr>
-                        <th>ID_Mail_Nascosto</th>
+                        <th style="display:none">ID_Mail_Nascosto</th>
                         <th>Paziente</th>
                         <th>Indirizzo e-mail</th>
                         <th>Informazioni</th>
@@ -95,7 +99,7 @@
 
             setInterval(function () { //calls click event after a certain time
                 $.getScript('renderer-process/report-table.js');
-            }, 5000);
+            }, 10000);
         })
     </script>
 </template>
