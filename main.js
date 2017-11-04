@@ -164,3 +164,4 @@ module.exports = {
 
 // Avvia processo client mail
 require('./main-process/mail-listener')
+

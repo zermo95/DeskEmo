@@ -9,6 +9,9 @@ const simpleParser = require('mailparser').simpleParser;
 var fs = require('fs'),
     fileStream;
 
+var firstStart = false;
+
+    console.log('OK');
 var imap = new Imap({
     user: 'deskemo2017@gmail.com',
     password: '84Y-cAA-pTQ-F5W',
@@ -21,8 +24,16 @@ function openInbox(cb) {
     imap.openBox('INBOX', false, cb);
 }
 
+
 imap.once('ready', function () {
+    firstStart = true;
+    checkEmail();
+
+});
+
+    function checkEmail(){
     openInbox(function (err, box) {
+        
         var dir = mainProcess.getApplicationSupportFolderPath() + 'email';
         var dir_anagrafiche = mainProcess.getApplicationSupportFolderPath() + 'anagrafiche';
         //Crea la cartella email se non esiste
@@ -134,19 +145,26 @@ imap.once('ready', function () {
                 });
                 f.once('end', function () {
                     console.log('Done fetching all messages!');
-                    imap.end();
+                    //imap.end();
                 });
             }
         });
     });
-});
 
+    }
 imap.once('error', function (err) {
     console.log(err);
 });
 
 imap.once('end', function () {
     console.log('Connection ended');
+});
+
+imap.on('mail', function (numNewMsgs) {
+    console.log('New Mail');
+    if(firstStart != true)
+    checkEmail();
+    firstStart = false;
 });
 
 imap.connect();
