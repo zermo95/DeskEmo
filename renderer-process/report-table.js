@@ -1,3 +1,4 @@
+showLoaderCheckNewReport(true);
 const mainProcess = require('electron').remote.require('./main.js')
 const separator = mainProcess.separator;
 var folderEmail = mainProcess.getApplicationSupportFolderPath() + 'email' + separator;
@@ -7,9 +8,9 @@ var readEmail = new Array();
 var unreadEmail = new Array();
 var i = 0;
 var z = 0;
-showLoaderCheckNewReport(true);
 //Memorizza i percorsi delle directory contenute nella directory email, nell'array addressDir
 fileSystemEmail.readdirSync(folderEmail).forEach(file => {
+    showLoaderCheckNewReport(true);
     // Ignora i file spazzatura tipici di MacOS (.DS_Store)
     if (file.charAt(0) != '.') {
         addressDirEmail[i] = folderEmail + file + separator;
@@ -24,6 +25,7 @@ var k = 0;
 for (z = 0; z < addressDirEmail.length; z++) {
     var newFolder = addressDirEmail[z];
     fileSystemEmail.readdirSync(newFolder).forEach(file => {
+        showLoaderCheckNewReport(true);
         // Ignora i file spazzatura tipici di MacOS (.DS_Store)
         if (file.charAt(0) != '.') {
             if (fileSystemEmail.existsSync(newFolder + file + separator + "read.txt")) {
@@ -41,6 +43,7 @@ for (z = 0; z < addressDirEmail.length; z++) {
 
 //Riempi la datatable report con le email non ancora lette
 for (var i = 0; i < unreadEmail.length; i++) {
+    showLoaderCheckNewReport(true);
     var emailInfo = fileSystemEmail.readFileSync(unreadEmail[i] + 'emailInfo.txt', 'utf8');
     var paziente = emailInfo.match("FROM:(.*) <");
     var emailAddress = emailInfo.match("<(.*)>");
@@ -59,6 +62,7 @@ for (var i = 0; i < unreadEmail.length; i++) {
 
     // Se l'email è già visualizzata nella tabella, non aggiungere nessuna nuova riga
     if ($.inArray(id_mail, valori_colonna) != -1) {
+        showLoaderCheckNewReport(false);
         continue;
     }
 
@@ -70,6 +74,7 @@ for (var i = 0; i < unreadEmail.length; i++) {
 
 //Riempi la datatable report con le email già lette
 for (var i = 0; i < readEmail.length; i++) {
+    showLoaderCheckNewReport(true);
     var emailInfo = fileSystemEmail.readFileSync(readEmail[i] + 'emailInfo.txt', 'utf8');
     var paziente = emailInfo.match("FROM:(.*) <");
     var emailAddress = emailInfo.match("<(.*)>");
@@ -88,15 +93,12 @@ for (var i = 0; i < readEmail.length; i++) {
 
     // Se l'email è già visualizzata nella tabella, non aggiungere nessuna nuova riga
     if ($.inArray(id_mail, valori_colonna) != -1) {
+        showLoaderCheckNewReport(false);
         continue;
     }
 
     reportTable.row.add([id_mail, paziente[1], emailAddress[1], info[1], '<span class="label label-default">Letta</span>', '<button type="button" class="btn legitRipple" id="' + readEmail[i] + '" data-toggle="modal" data-target="#modal_emailInfo" onclick=setModalContent(this.id)><i class="icon-enlarge7 position-left"></i> Visualizza</button>', ]).draw();
 
-    /* $('#report > tbody:last-child').append('<tr><td>' + paziente[1] + '</td><td>' + emailAddress[1] +
-         '</td><td>' + info[1] +
-         '</td><td><span class="label label-default">Letta</span></td><td class="text-center"><button type="button" class="btn legitRipple" onclick=setModalContent("Ciao")><i class="icon-enlarge7 position-left"></i> Visualizza</button></td></tr>'
-     ); */
 }
 
 function setModalContent(path) {
@@ -146,5 +148,3 @@ function showLoaderCheckNewReport(boolean) {
         $('#check-new-report').hide();
     }
 }
-
-showLoaderCheckNewReport(false);
