@@ -78,15 +78,27 @@ imap.once('ready', function () {
                                 if (!fs.existsSync(emailAddressDir))
                                     fs.mkdirSync(emailAddressDir);
 
+                                    var html = mail.html;
+                                    
+                                     //Sostituisci<br> con \n 
+                                    var brRegex = /<br\s*[\/]?>/gi;
+                                    html = html.replace(brRegex, "\n");
+                                                                             
+                                    //Rimuovi il resto del codice html dalla stringa
+                                    var regex = /(<([^>]+)>)/ig
+                                    ,   result = html.replace(regex, "");
+                                    result = result.trim();
+                                    
                                 //Controlla esistenza cartella anagrafica
                                 if (!fs.existsSync(anagraficaDir)) {
                                     fs.mkdirSync(anagraficaDir);
 
                                     //Creazione stringa anagrafica da salvare su file
-                                    var bDay = mail.text.match(/\d{2}([\/.-])\d{2}\1\d{4}/g);
+                                    console.log("HTML:"+mail.html);
+                                    var bDay = mail.html.match(/\d{2}([\/.-])\d{2}\1\d{4}/g);
                                     var nomeCognome = mail.from.text.match('(.*)<');
                                     var email = mail.from.text.match('<(.*)>');
-                                    var codiceFiscale = mail.text.match('Fiscale: (.*)\n');
+                                    var codiceFiscale = result.match('Fiscale: (.*)\n');
                                     var anagrafica = "NomeCognome:" + nomeCognome[1] + ";\n" + "Bday:" + bDay[1] + ";\n" + "CodiceFiscale:" + codiceFiscale[1] + ";\n" + "IndirizzoEmail:" + email[1] + ";";
 
                                     //Salvataggio dell'anagrafica nella directory corrispondente
@@ -97,12 +109,14 @@ imap.once('ready', function () {
                                         console.log("The file was saved!");
                                     });
 
-                                }
+                                } 
                                 //Verifica cartella email corrispondente al message id
                                 if (!fs.existsSync(emailDir)) {
                                     fs.mkdirSync(emailDir);
                                     console.log(mail.headers.get('subject'));
-                                    var mailInfo = "FROM:" + mail.from.text + ";\nSUBJECT:" + mail.subject + ";\n\nBODY:" + mail.text + ";";
+                                  
+                                    
+                                    var mailInfo = "FROM:" + mail.from.text + ";\nSUBJECT:" + mail.subject + ";\n\nBODY:" + result + ";";
 
                                     //Salvataggio degli allegati
                                     var arrayLength = mail.attachments.length;
@@ -128,7 +142,8 @@ imap.once('ready', function () {
                                     }
                                 }
                             });
-                            /* SALVATAGGIO DELL'INTERO FILE EMAIL -- INUTILE AL MOMENTO
+                            
+                            /* SALVATAGGIO DELL'INTERO FILE EMAIL -- INUTILE AL MOMENTO 
                             fs.writeFile(emailDir + '/msg-' + seqno + '-body.txt', buffer, function(err) {
                                 if(err) {
                                     return console.log(err);
