@@ -11,10 +11,18 @@ var fs = require('fs'),
 
 var firstStart = false;
 
-    console.log('OK');
+
+//Decriptazione del file json 
+var filesDir = mainProcess.getApplicationSupportFolderPath() + 'files' + separator;
+var encryptedJson = fs.readFileSync(filesDir+'info.json', 'utf8');
+var algorithm = 'aes-256-ctr';
+var password = 'd6F3Efeq';
+var json = JSON.parse(decrypt(encryptedJson, algorithm, password));
+
+
 var imap = new Imap({
-    user: 'deskemo2017@gmail.com',
-    password: '84Y-cAA-pTQ-F5W',
+    user: json['email'],
+    password: json['password'],
     host: 'imap.gmail.com',
     port: 993,
     tls: true
@@ -184,3 +192,12 @@ imap.on('mail', function (numNewMsgs) {
 });
 
 imap.connect();
+
+function decrypt(text, algorithm, password) {
+    var crypto = require('crypto');
+    var decipher = crypto.createDecipher(algorithm, password)
+    var dec = decipher.update(text, 'hex', 'utf8')
+    dec += decipher.final('utf8');
+    return dec;
+}
+   
