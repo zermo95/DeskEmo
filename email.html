@@ -8,7 +8,7 @@
 
             <div class="panel-body">
 
-                <form name="data" class="form-horizontal form-validate-jquery" action="index.html" onsubmit="createJson(data.basic.value,data.email.value,data.password.value)"
+                <form name="data" id="dataForm" class="form-horizontal form-validate-jquery" onsubmit="verifyEmail()"
                     data-toggle="validator">
                     <fieldset class="content-group">
                         <legend class="text-bold">Configurazione account</legend>
@@ -55,7 +55,7 @@
                                 <!-- Ripeti password -->
                                 <div class="form-group has-feedback has-feedback-left">
                                     <div class="form-group">
-                                        <input type="password" name="repeat_password" class="form-control" required="required" placeholder="Ripeti la password" aria-required="true">
+                                        <input type="password" id="rpassword" name="repeat_password" class="form-control" required="required" placeholder="Ripeti la password" aria-required="true">
                                     </div>
                                     <div class="form-control-feedback">
                                         <i class="icon-lock2"></i>
@@ -83,7 +83,30 @@
     <!-- /content area -->
 
     <script>
-        function createJson(nomeCognome, email, password) {
+        
+        function verifyEmail() {
+            if(($('#password').val()!="" && $('#rpassword').val()!="") &&  ($('#password').val() === $('#rpassword').val()) && ( ($('#password').val().length) >= 5) && $('#email').val()!="" &&  $('#nomecognome').val()!="" ){
+            /* Block current page*/
+            	$.blockUI({ 
+	    message: '<div class="pace-demo" align=center><div class="theme_xbox_xs"><div class="pace_progress" data-progress-text="60%" data-progress="60"></div><div class="pace_activity"></div></div>Verifica delle credenziali inserite...</div>',
+	    overlayCSS: {
+	        backgroundColor: '#1b2024',
+	        opacity: 0.8,
+	        cursor: 'wait'
+	    },
+	    css: {
+	        border: 0,
+	        color: '#fff',
+	        padding: 0,
+	        backgroundColor: 'transparent'
+	    }
+    });
+          $.getScript("main-process/mail-check.js");
+            checkEmail();
+}
+        }
+
+        function createJson(nomeCognome, email, password){
             var info = {
                 "nomeCognome": nomeCognome,
                 "email": email,
@@ -105,8 +128,11 @@
             fs.mkdirSync(__dirname);
         }
             fs.writeFile(__dirname + "info.json", encryptedJson);
+    
+            
         }
-
+        
+        
     </script>
 
     <script>
@@ -120,9 +146,15 @@
             //$.getScript('assets/js/plugins/forms/styling/uniform.min.js');
             //$.getScript('assets/js/core/app.js');
             $.getScript('assets/js/pages/form_validation.js');
+            $.getScript("assets/js/plugins/loaders/blockui.min.js");
+            
             //$.getScript('assets/js/plugins/ui/ripple.min.js');
             //$.getScript('encrypt-process/encrypt.js');
             //$.getScript('');
+
+            $("#dataForm").submit(function(e) {
+    e.preventDefault();
+});
 
             //Decriptazione del file json e riempimento del form
             const mainProcess = require('electron').remote.require('./main.js')

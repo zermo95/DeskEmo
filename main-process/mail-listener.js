@@ -168,6 +168,7 @@ imap.once('ready', function () {
 
     }
 imap.once('error', function (err) {
+    console.log("\nERRORE CREDENZIALI")
     console.log(err);
 });
 
