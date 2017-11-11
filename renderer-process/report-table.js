@@ -1,4 +1,3 @@
-console.log('sono dentro')
 showLoaderCheckNewReport(true);
 const mainProcess = require('electron').remote.require('./main.js')
 const separator = mainProcess.separator;
@@ -15,7 +14,7 @@ fileSystemEmail.readdirSync(folderEmail).forEach(file => {
     // Ignora i file spazzatura tipici di MacOS (.DS_Store)
     if (file.charAt(0) != '.') {
         addressDirEmail[i] = folderEmail + file + separator;
-        console.log(addressDirEmail[i])
+        //console.log(addressDirEmail[i])
         i++;
     }
 });
@@ -26,7 +25,7 @@ var k = 0;
 for (z = 0; z < addressDirEmail.length; z++) {
     var newFolder = addressDirEmail[z];
     fileSystemEmail.readdirSync(newFolder).forEach(file => {
-        console.log('sono dentro il for')        
+        //console.log('sono dentro il for')        
         showLoaderCheckNewReport(true);
         // Ignora i file spazzatura tipici di MacOS (.DS_Store)
         if (file.charAt(0) != '.') {
@@ -71,6 +70,7 @@ for (var i = 0; i < unreadEmail.length; i++) {
     var id_label = getIDsenzaCaratteriSpeciali(unreadEmail[i])
 
     reportTable.row.add([id_mail, paziente[1], emailAddress[1], info[1], '<span id="' + id_label + '" class="label label-success">Nuova</span>', '<button type="button" class="btn legitRipple" id="' + unreadEmail[i] + '" data-toggle="modal" data-target="#modal_emailInfo" onclick=setModalContent(this.id)><i class="icon-enlarge7 position-left"></i> Visualizza</button>', '']).draw();
+    showLoaderCheckNewReport(false);
 
 }
 
@@ -100,6 +100,7 @@ for (var i = 0; i < readEmail.length; i++) {
     }
 
     reportTable.row.add([id_mail, paziente[1], emailAddress[1], info[1], '<span class="label label-default">Letta</span>', '<button type="button" class="btn legitRipple" id="' + readEmail[i] + '" data-toggle="modal" data-target="#modal_emailInfo" onclick=setModalContent(this.id)><i class="icon-enlarge7 position-left"></i> Visualizza</button>', ]).draw();
+    showLoaderCheckNewReport(false);
 
 }
 
