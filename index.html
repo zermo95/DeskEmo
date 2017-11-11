@@ -222,6 +222,7 @@
                             },
                             function (isConfirm) {
                                 if (isConfirm) {
+                                    // Elimina il file json
                                     var app = require('electron').remote.app
                                     var fs = require('fs')
                                     fs.unlink(filesDir + 'info.json')
@@ -231,6 +232,7 @@
                                         confirmButtonColor: "#66BB6A",
                                         type: "success"
                                     }, function () {
+                                        // Rilancia deskemo
                                         app.relaunch()
                                         app.exit()
                                     })
@@ -271,7 +273,6 @@
         $(document).ready(function () {
             caricaSezione('report');
             // $.getScript('encrypt-process/encrypt.js');
-
         });
     </script>
 
