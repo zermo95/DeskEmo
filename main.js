@@ -147,7 +147,7 @@ app.on('activate', () => {
  * In cui sono collocati i file di supporto all'applicazione
  * 
  * Esempio di stringa ritornata:
- * /Users/zermo/Library/Application Support/deskemoalpha/
+ * /Users/zermo/Library/Application Support/deskemo/
  */
 function getApplicationSupportFolderPath() {
     return app.getPath('appData') + separator + app.getName() + separator
@@ -167,9 +167,6 @@ var myEventHandler = function () {
 eventEmitter.on('checkemail', myEventHandler);
 
 
-
-
-
 /**
  * Esporta la funzione così da poter essere utilizzata in altri script
  * quando viene chiamata con il require(main.js)
@@ -179,8 +176,3 @@ module.exports = {
     separator,
     eventEmitter
 }
-
-
-
-
-

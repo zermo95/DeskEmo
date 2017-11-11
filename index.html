@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Deskemo Alpha 1.1.0 by AT Software</title>
+    <title>DeskEmo 1.0.0 by AT Software</title>
 
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -128,12 +128,11 @@
 
                     <!-- Decriptazione del file json e riempimento campo nome e cognome medico -->
                     <script>
-      
-                         const mainProcess = require('electron').remote.require('./main.js')
-                         var eventEmitter = mainProcess.eventEmitter;
-                         eventEmitter.emit('checkemail');  
-    
-                         const separator = mainProcess.separator;
+                        const mainProcess = require('electron').remote.require('./main.js')
+                        var eventEmitter = mainProcess.eventEmitter;
+                        eventEmitter.emit('checkemail');
+
+                        const separator = mainProcess.separator;
 
                         var filesDir = mainProcess.getApplicationSupportFolderPath() + 'files' + separator
                         var fs = require('fs');
@@ -216,7 +215,7 @@
                     <!-- Footer -->
                     <div class="footer text-muted">
                         &copy; 2017.
-                        <a href="#">Desk Emo Alpha 1.1.0</a> by
+                        <a href="#">DeskEmo 1.0.0</a> by
                         <a href="#" target="_blank">AT Software</a>
                     </div>
                     <!-- /footer -->
