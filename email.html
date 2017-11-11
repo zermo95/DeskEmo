@@ -8,11 +8,10 @@
 
             <div class="panel-body">
 
-                <form name="data" id="dataForm" class="form-horizontal form-validate-jquery" onsubmit="verifyEmail()"
-                    data-toggle="validator">
+                <form name="data" id="dataForm" class="form-horizontal form-validate-jquery" onsubmit="verifyEmail()" data-toggle="validator">
                     <fieldset class="content-group">
                         <legend class="text-bold">Configurazione account</legend>
-                        
+
                         <div class="col-lg-10">
                             <div class="row">
 
@@ -55,7 +54,8 @@
                                 <!-- Ripeti password -->
                                 <div class="form-group has-feedback has-feedback-left">
                                     <div class="form-group">
-                                        <input type="password" id="rpassword" name="repeat_password" class="form-control" required="required" placeholder="Ripeti la password" aria-required="true">
+                                        <input type="password" id="rpassword" name="repeat_password" class="form-control" required="required" placeholder="Ripeti la password"
+                                            aria-required="true">
                                     </div>
                                     <div class="form-control-feedback">
                                         <i class="icon-lock2"></i>
@@ -83,30 +83,31 @@
     <!-- /content area -->
 
     <script>
-        
         function verifyEmail() {
-            if(($('#password').val()!="" && $('#rpassword').val()!="") &&  ($('#password').val() === $('#rpassword').val()) && ( ($('#password').val().length) >= 5) && $('#email').val()!="" &&  $('#nomecognome').val()!="" ){
-            /* Block current page*/
-            	$.blockUI({ 
-	    message: '<div class="pace-demo" align=center><div class="theme_xbox_xs"><div class="pace_progress" data-progress-text="60%" data-progress="60"></div><div class="pace_activity"></div></div>Verifica delle credenziali inserite...</div>',
-	    overlayCSS: {
-	        backgroundColor: '#1b2024',
-	        opacity: 0.8,
-	        cursor: 'wait'
-	    },
-	    css: {
-	        border: 0,
-	        color: '#fff',
-	        padding: 0,
-	        backgroundColor: 'transparent'
-	    }
-    });
-          $.getScript("main-process/mail-check.js");
-            checkEmail();
-}
+            if (($('#password').val() != "" && $('#rpassword').val() != "") && ($('#password').val() === $('#rpassword')
+                    .val()) && (($('#password').val().length) >= 5) && $('#email').val() != "" && $('#nomecognome').val() !=
+                "") {
+                /* Block current page*/
+                $.blockUI({
+                    message: '<div class="pace-demo" align=center><div class="theme_xbox_xs"><div class="pace_progress" data-progress-text="60%" data-progress="60"></div><div class="pace_activity"></div></div>Verifica delle credenziali inserite...</div>',
+                    overlayCSS: {
+                        backgroundColor: '#1b2024',
+                        opacity: 0.8,
+                        cursor: 'wait'
+                    },
+                    css: {
+                        border: 0,
+                        color: '#fff',
+                        padding: 0,
+                        backgroundColor: 'transparent'
+                    }
+                });
+                $.getScript("main-process/mail-check.js");
+                checkEmail();
+            }
         }
 
-        function createJson(nomeCognome, email, password){
+        function createJson(nomeCognome, email, password) {
             var info = {
                 "nomeCognome": nomeCognome,
                 "email": email,
@@ -117,25 +118,25 @@
             var password = 'd6F3Efeq';
 
             var encryptedJson = encrypt(json, algorithm, password);
-           // var __dirname = 'files';
+            // var __dirname = 'files';
 
             const mainProcess = require('electron').remote.require('./main.js')
             const separator = mainProcess.separator;
             var __dirname = mainProcess.getApplicationSupportFolderPath() + 'files' + separator
             var fs = require('fs');
-          //Crea la cartella files se non esiste
-        if (!fs.existsSync(__dirname)) {
-            fs.mkdirSync(__dirname);
-        }
+            //Crea la cartella files se non esiste
+            if (!fs.existsSync(__dirname)) {
+                fs.mkdirSync(__dirname);
+            }
             fs.writeFile(__dirname + "info.json", encryptedJson);
-    
-            
-        }
 
+
+        }
     </script>
 
     <script>
         $(document).ready(function () {
+            var fs = require('fs');
             //$.getScript('assets/js/plugins/forms/validation/validate.min.js');
             //$.getScript('assets/js/plugins/forms/selects/bootstrap_multiselect.js');
             //$.getScript('assets/js/plugins/forms/inputs/touchspin.min.js');
@@ -146,27 +147,28 @@
             //$.getScript('assets/js/core/app.js');
             $.getScript('assets/js/pages/form_validation.js');
             $.getScript("assets/js/plugins/loaders/blockui.min.js");
-            
+
             //$.getScript('assets/js/plugins/ui/ripple.min.js');
             //$.getScript('encrypt-process/encrypt.js');
             //$.getScript('');
 
-            $("#dataForm").submit(function(e) {
-    e.preventDefault();
-});
+            $("#dataForm").submit(function (e) {
+                e.preventDefault();
+            });
 
             //Decriptazione del file json e riempimento del form
             const mainProcess = require('electron').remote.require('./main.js')
             const separator = mainProcess.separator;
             var filesDir = mainProcess.getApplicationSupportFolderPath() + 'files' + separator
-            var encryptedJson = fs.readFileSync(filesDir+'info.json', 'utf8');
+            if (fs.existsSync(filesDir + 'info.json')) {
+                var encryptedJson = fs.readFileSync(filesDir + 'info.json', 'utf8');
 
-            var algorithm = 'aes-256-ctr';
-            var password = 'd6F3Efeq';
-            var json = JSON.parse(decrypt(encryptedJson, algorithm, password));
-            $('#nomecognome').val(json['nomeCognome']);
-            $('#email').val(json['email']);
-
+                var algorithm = 'aes-256-ctr';
+                var password = 'd6F3Efeq';
+                var json = JSON.parse(decrypt(encryptedJson, algorithm, password));
+                $('#nomecognome').val(json['nomeCognome']);
+                $('#email').val(json['email']);
+            }
         })
     </script>
 

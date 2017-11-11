@@ -160,7 +160,7 @@ var eventEmitter = new events.EventEmitter();
 
 //Create an event handler:
 var myEventHandler = function () {
-  require('./main-process/mail-listener');
+    require('./main-process/mail-listener');
 }
 
 //Assign the event handler to an event:
@@ -170,7 +170,7 @@ eventEmitter.on('checkemail', myEventHandler);
 /**
  * Esporta la funzione così da poter essere utilizzata in altri script
  * quando viene chiamata con il require(main.js)
- */ 
+ */
 module.exports = {
     getApplicationSupportFolderPath,
     separator,
