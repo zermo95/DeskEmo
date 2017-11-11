@@ -7,6 +7,7 @@ const url = require('url')
 const separator = setSeparator();
 var fs = require('fs');
 
+
 /**
  * Imposta il separatore delle directory in base al sistema operativo
  * WINDOWS = \
@@ -39,7 +40,7 @@ let win
 //let firstTimeWindows;
 
 function createWindow() {
-
+    require('./main-process/main-menu')
     createApplicationSupportFolder()
 
     // Create the browser window.

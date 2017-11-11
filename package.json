@@ -4,10 +4,10 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "postinstall": "install-app-deps",    
     "start": "electron .",
-    "pack": "build --dir",
-    "dist": "build"
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
   },
   "author": "AT Software",
   "license": "ISC",
@@ -16,7 +16,7 @@
     "mailparser": "^2.1.0"
   },
   "devDependencies": {
-    "electron": "^1.7.9",    
+    "electron": "^1.7.9",
     "electron-builder": "^19.45.4"
   },
   "build": {
