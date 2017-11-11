@@ -1,3 +1,4 @@
+console.log('sono dentro')
 showLoaderCheckNewReport(true);
 const mainProcess = require('electron').remote.require('./main.js')
 const separator = mainProcess.separator;
@@ -14,7 +15,7 @@ fileSystemEmail.readdirSync(folderEmail).forEach(file => {
     // Ignora i file spazzatura tipici di MacOS (.DS_Store)
     if (file.charAt(0) != '.') {
         addressDirEmail[i] = folderEmail + file + separator;
-        //console.log(addressDir[i])
+        console.log(addressDirEmail[i])
         i++;
     }
 });
@@ -25,6 +26,7 @@ var k = 0;
 for (z = 0; z < addressDirEmail.length; z++) {
     var newFolder = addressDirEmail[z];
     fileSystemEmail.readdirSync(newFolder).forEach(file => {
+        console.log('sono dentro il for')        
         showLoaderCheckNewReport(true);
         // Ignora i file spazzatura tipici di MacOS (.DS_Store)
         if (file.charAt(0) != '.') {
