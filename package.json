@@ -1,16 +1,48 @@
 {
-  "name": "deskemo",
+  "name": "DeskEmo",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "postinstall": "install-app-deps",    
+    "start": "electron .",
+    "pack": "build --dir",
+    "dist": "build"
   },
   "author": "AT Software",
   "license": "ISC",
   "dependencies": {
-    "electron": "^1.7.9",
     "imap": "^0.8.19",
     "mailparser": "^2.1.0"
+  },
+  "devDependencies": {
+    "electron": "^1.7.9",    
+    "electron-builder": "^19.45.4"
+  },
+  "build": {
+    "appId": "com.deskemo.app",
+    "dmg": {
+      "contents": [{
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "squirrel",
+      "icon": "build/icon.ico"
+    }
   }
 }
