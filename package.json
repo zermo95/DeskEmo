@@ -12,7 +12,6 @@
   "author": "AT Software",
   "license": "ISC",
   "dependencies": {
-    "electron": "^1.7.9",    
     "imap": "^0.8.19",
     "mailparser": "^2.1.0"
   },

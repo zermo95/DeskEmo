@@ -40,7 +40,10 @@ let win
 //let firstTimeWindows;
 
 function createWindow() {
+    // Creo il menu dell'app (File - Modifica - Visualizza - Aiuto ecc..)
     require('./main-process/main-menu')
+
+    // Creo la cartella Application Support (per Mac) o %APPDATA% (per Windows)
     createApplicationSupportFolder()
 
     // Create the browser window.

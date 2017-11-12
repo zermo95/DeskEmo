@@ -186,6 +186,7 @@ function checkEmail() {
 imap.once('error', function (err) {
     console.log("\nERRORE CREDENZIALI")
     console.log(err);
+    imap.connect();    
 });
 
 imap.once('end', function () {
