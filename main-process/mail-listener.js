@@ -31,14 +31,15 @@ var imap = new Imap({
 });
 
 function openInbox(cb) {
+    console.log('Apro la inbox..')    
     imap.openBox('INBOX', false, cb);
 }
 
 
 imap.once('ready', function () {
+    console.log('Verifico le email..')        
     firstStart = true;
     checkEmail();
-
 });
 
 function checkEmail() {
@@ -186,9 +187,13 @@ function checkEmail() {
 
 }
 imap.once('error', function (err) {
-    console.log("\nERRORE CREDENZIALI")
+    if (err.code === 'ETIMEDOUT') {
+        console.log('Errore di Timeout\nProvo a riconnettermi..\n')
+        imap.connect();    
+    } else {
+        console.log("\nERRORE ")        
+    }  
     console.log(err);
-    imap.connect();    
 });
 
 imap.once('end', function () {
@@ -202,6 +207,7 @@ imap.on('mail', function (numNewMsgs) {
     firstStart = false;
 });
 
+console.log('Effettuo la connessione..\n')
 imap.connect();
 
 function decrypt(text, algorithm, password) {
