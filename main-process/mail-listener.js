@@ -1,5 +1,5 @@
 var mainProcess = require('../main.js')
-const separator =  mainProcess.separator;
+const separator = mainProcess.separator;
 
 var Imap = require('imap'),
     inspect = require('util').inspect;
@@ -14,7 +14,7 @@ var firstStart = false;
 
 //Decriptazione del file json 
 var filesDir = mainProcess.getApplicationSupportFolderPath() + 'files' + separator;
-var encryptedJson = fs.readFileSync(filesDir+'info.json', 'utf8');
+var encryptedJson = fs.readFileSync(filesDir + 'info.json', 'utf8');
 var algorithm = 'aes-256-ctr';
 var password = 'd6F3Efeq';
 var json = JSON.parse(decrypt(encryptedJson, algorithm, password));
@@ -39,9 +39,9 @@ imap.once('ready', function () {
 
 });
 
-    function checkEmail(){
+function checkEmail() {
     openInbox(function (err, box) {
-        
+
         var dir = mainProcess.getApplicationSupportFolderPath() + 'email';
         var dir_anagrafiche = mainProcess.getApplicationSupportFolderPath() + 'anagrafiche';
         //Crea la cartella email se non esiste
@@ -86,27 +86,35 @@ imap.once('ready', function () {
                                 if (!fs.existsSync(emailAddressDir))
                                     fs.mkdirSync(emailAddressDir);
 
-                                    var html = mail.html;
-                                    
-                                     //Sostituisci<br> con \n 
-                                    var brRegex = /<br\s*[\/]?>/gi;
-                                    html = html.replace(brRegex, "\n");
-                                                                             
-                                    //Rimuovi il resto del codice html dalla stringa
-                                    var regex = /(<([^>]+)>)/ig
-                                    ,   result = html.replace(regex, "");
-                                    result = result.trim();
-                                    
+                                var html = mail.html;
+
+                                //Sostituisci<br> con \n 
+                                //var brRegex = /<br\s*[\/]?>/gi
+                                var brRegex = /<\/?br[^>]*>/g
+                                var spanRegex = /<\/?span[^>]*>/g
+                                var divRegex = /<\/?div[^>]*>/g
+                                html = html.replace(brRegex, "\n")
+                                html = html.replace(spanRegex, "")
+                                html = html.replace(divRegex, "")
+
+                                //Rimuovi il resto del codice html dalla stringa
+                                var regex = /(<([^>]+)>)/ig;
+                                result = html.replace(regex, "");
+                                result = result.trim();
+
+                                console.log(result)
+
                                 //Controlla esistenza cartella anagrafica
                                 if (!fs.existsSync(anagraficaDir)) {
                                     fs.mkdirSync(anagraficaDir);
 
                                     //Creazione stringa anagrafica da salvare su file
-                                    console.log("HTML:"+mail.html);
+                                    console.log("HTML:" + mail.html);
                                     var bDay = mail.html.match(/\d{2}([\/.-])\d{2}\1\d{4}/g);
                                     var nomeCognome = mail.from.text.match('(.*)<');
                                     var email = mail.from.text.match('<(.*)>');
                                     var codiceFiscale = result.match('Fiscale: (.*)\n');
+                                    console.log(bDay + '  <---Date\n' + nomeCognome + '  <---Nome e Cognome\n' + email + '  <---Email\n' + codiceFiscale + '  <---Cod Fiscale\n')
                                     var anagrafica = "NomeCognome:" + nomeCognome[1] + ";\n" + "Bday:" + bDay[1] + ";\n" + "CodiceFiscale:" + codiceFiscale[1] + ";\n" + "IndirizzoEmail:" + email[1] + ";";
 
                                     //Salvataggio dell'anagrafica nella directory corrispondente
@@ -117,13 +125,13 @@ imap.once('ready', function () {
                                         console.log("The file was saved!");
                                     });
 
-                                } 
+                                }
                                 //Verifica cartella email corrispondente al message id
                                 if (!fs.existsSync(emailDir)) {
                                     fs.mkdirSync(emailDir);
                                     console.log(mail.headers.get('subject'));
-                                  
-                                    
+
+
                                     var mailInfo = "FROM:" + mail.from.text + ";\nSUBJECT:" + mail.subject + ";\n\nBODY:" + result + ";";
 
                                     //Salvataggio degli allegati
@@ -150,7 +158,7 @@ imap.once('ready', function () {
                                     }
                                 }
                             });
-                            
+
                             /* SALVATAGGIO DELL'INTERO FILE EMAIL -- INUTILE AL MOMENTO 
                             fs.writeFile(emailDir + '/msg-' + seqno + '-body.txt', buffer, function(err) {
                                 if(err) {
@@ -174,7 +182,7 @@ imap.once('ready', function () {
         });
     });
 
-    }
+}
 imap.once('error', function (err) {
     console.log("\nERRORE CREDENZIALI")
     console.log(err);
@@ -186,8 +194,8 @@ imap.once('end', function () {
 
 imap.on('mail', function (numNewMsgs) {
     console.log('New Mail');
-    if(firstStart != true)
-    checkEmail();
+    if (firstStart != true)
+        checkEmail();
     firstStart = false;
 });
 
@@ -200,4 +208,3 @@ function decrypt(text, algorithm, password) {
     dec += decipher.final('utf8');
     return dec;
 }
-   

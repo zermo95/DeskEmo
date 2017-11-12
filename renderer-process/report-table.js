@@ -70,7 +70,6 @@ for (var i = 0; i < unreadEmail.length; i++) {
     var id_label = getIDsenzaCaratteriSpeciali(unreadEmail[i])
 
     reportTable.row.add([id_mail, paziente[1], emailAddress[1], info[1], '<span id="' + id_label + '" class="label label-success">Nuova</span>', '<button type="button" class="btn legitRipple" id="' + unreadEmail[i] + '" data-toggle="modal" data-target="#modal_emailInfo" onclick=setModalContent(this.id)><i class="icon-enlarge7 position-left"></i> Visualizza</button>', '']).draw();
-    showLoaderCheckNewReport(false);
 
 }
 
@@ -100,7 +99,6 @@ for (var i = 0; i < readEmail.length; i++) {
     }
 
     reportTable.row.add([id_mail, paziente[1], emailAddress[1], info[1], '<span class="label label-default">Letta</span>', '<button type="button" class="btn legitRipple" id="' + readEmail[i] + '" data-toggle="modal" data-target="#modal_emailInfo" onclick=setModalContent(this.id)><i class="icon-enlarge7 position-left"></i> Visualizza</button>', ]).draw();
-    showLoaderCheckNewReport(false);
 
 }
 
